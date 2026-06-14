@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* Column 1: Office & Gallery */}
           <div className="space-y-4">
-            <h4 className={cn('font-serif', 'font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
+            <h4 className={cn('font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
               Marketing Gallery
             </h4>
             <ul className={cn('space-y-3', 'text-zinc-300/80', 'text-xs', 'font-light', 'leading-relaxed')}>
@@ -100,7 +100,7 @@ export default function Footer() {
 
           {/* Column 2: The Collections */}
           <div className="space-y-4">
-            <h4 className={cn('font-serif', 'font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
+            <h4 className={cn('font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
               The Estates
             </h4>
             <ul className={cn('space-y-2.5', 'text-zinc-300/70', 'text-xs', 'font-light')}>
@@ -113,7 +113,7 @@ export default function Footer() {
 
           {/* Column 3: Corporate Links */}
           <div className="space-y-4">
-            <h4 className={cn('font-serif', 'font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
+            <h4 className={cn('font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
               Company
             </h4>
             <ul className={cn('space-y-2.5', 'text-zinc-300/70', 'text-xs', 'font-light')}>
@@ -127,7 +127,7 @@ export default function Footer() {
           {/* Column 4: Legals & Media */}
           <div className="space-y-5">
             <div className="space-y-3">
-              <h4 className={cn('font-serif', 'font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
+              <h4 className={cn('font-semibold', 'text-xs', 'tracking-[0.2em]', 'text-[#E2D8CC]')}>
                 Legal Documentation
               </h4>
               <ul className={cn('space-y-2.5', 'text-zinc-300/70', 'text-xs', 'font-light')}>

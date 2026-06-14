@@ -15,13 +15,18 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  // Memicu animasi masuk tepat setelah navbar di-mount/reload
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Lock body scroll saat mobile menu terbuka
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
-
     return () => {
       document.body.style.overflow = "";
     };
@@ -34,17 +39,23 @@ export default function Navbar() {
         setIsMobileMenuOpen(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#543420]/10 bg-white shadow-sm">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#543420]/10 bg-white shadow-sm font-sans">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:h-[72px] sm:px-6 lg:h-20 lg:px-8">
-          {/* Logo */}
-          <Link href="/" className="relative z-[60] block shrink-0">
+          
+          {/* Logo (Animated: Fade-in & Slide from Left) */}
+          <Link 
+            href="/" 
+            className={cn(
+              "relative z-[60] block shrink-0 transition-all duration-1000 ease-out",
+              isMounted ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
+            )}
+          >
             <div className="relative h-9 w-[130px] sm:h-10 sm:w-[145px] md:h-11 md:w-[160px] lg:w-[180px]">
               <Image
                 src="/Logo.png"
@@ -57,24 +68,30 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop / Tablet Navigation */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-8">
+          {/* Desktop / Tablet Navigation (Animated: Fade-in & Slide from Top) */}
+          <nav className={cn(
+            "hidden md:flex items-center gap-5 lg:gap-8 transition-all duration-1000 delay-150 ease-out",
+            isMounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+          )}>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-[#543420]/70 transition-colors duration-200 hover:text-[#543420] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#543420] after:transition-all after:duration-300 hover:after:w-full lg:text-xs"
+                className="relative py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-[#543420]/70 transition-colors duration-200 hover:text-[#543420] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#543420] after:transition-all after:duration-300 hover:after:w-full lg:text-xs font-sans"
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* Desktop / Tablet CTA */}
-          <div className="hidden md:flex items-center">
+          {/* Desktop / Tablet CTA (Animated: Fade-in & Slide from Right) */}
+          <div className={cn(
+            "hidden md:flex items-center transition-all duration-1000 delay-300 ease-out",
+            isMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+          )}>
             <Link
               href="#consultation"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#543420] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#543420] transition-all duration-300 hover:bg-[#543420] hover:text-white active:scale-95 lg:px-5"
+              className="group inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#543420] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#543420] transition-all duration-300 hover:bg-[#543420] hover:text-white active:scale-95 lg:px-5 font-sans"
             >
               <span>Schedule a Tour</span>
               <ArrowUpRight
@@ -101,7 +118,7 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-40 md:hidden transition-opacity duration-300",
+          "fixed inset-0 z-40 md:hidden transition-opacity duration-300 font-sans",
           isMobileMenuOpen
             ? "visible opacity-100"
             : "invisible pointer-events-none opacity-0"
@@ -122,7 +139,7 @@ export default function Navbar() {
           >
             {/* Mobile nav links */}
             <nav className="flex flex-col gap-6">
-              <span className="block border-b border-zinc-100 pb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+              <span className="block border-b border-zinc-100 pb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400 font-sans">
                 Navigation Menu
               </span>
 
@@ -131,7 +148,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="font-serif text-2xl text-[#543420] transition-all duration-200 hover:italic sm:text-3xl"
+                  className="font-sans font-medium text-2xl text-[#543420] transition-all duration-200 hover:translate-x-1 sm:text-3xl"
                 >
                   {link.name}
                 </Link>
@@ -143,14 +160,14 @@ export default function Navbar() {
               <Link
                 href="#consultation"
                 onClick={closeMobileMenu}
-                className="flex items-center justify-center gap-2 rounded-xl bg-[#543420] py-4 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-lg shadow-[#543420]/10"
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#543420] py-4 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-lg shadow-[#543420]/10 font-sans"
               >
                 <span>Schedule a Private Tour</span>
                 <ArrowUpRight size={14} />
               </Link>
 
               <div className="text-center">
-                <span className="block text-[10px] font-medium uppercase tracking-widest text-zinc-400">
+                <span className="block text-[10px] font-medium uppercase tracking-widest text-zinc-400 font-sans">
                   The Osborn Living &copy; 2026
                 </span>
               </div>

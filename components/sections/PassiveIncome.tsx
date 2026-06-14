@@ -2,194 +2,246 @@
 
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { 
-  TrendingUp, Landmark, ShieldCheck, 
-  DollarSign, ArrowUpRight, BarChart3, HelpCircle 
+import {
+  TrendingUp, ShieldCheck,
+  DollarSign, BarChart3, HelpCircle, Star
 } from "lucide-react";
 
 export default function PassiveIncome() {
   const [animateChart, setAnimateChart] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Trigger animasi grafik saat section masuk ke layar browser
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
+      ([entry]) => {
         if (entry.isIntersecting) {
-          setAnimateChart(true);
+          setIsVisible(true);
+          setTimeout(() => setAnimateChart(true), 400);
+          observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   const investmentMetrics = [
     {
-      icon: <TrendingUp size={18} />,
+      icon: <TrendingUp size={16} />,
       title: "Estimasi ROI Tahunan",
-      value: "11.4% - 14.2%",
-      desc: "Jauh mengungguli rata-rata instrumen investasi konvensional atau deposito bank."
+      value: "11.4% – 14.2%",
+      desc: "Jauh mengungguli rata-rata instrumen investasi konvensional atau deposito bank.",
     },
     {
-      icon: <DollarSign size={18} />,
+      icon: <DollarSign size={16} />,
       title: "Proyeksi Occupancy Rate",
-      value: "78% - 85%",
-      desc: "Didukung oleh lokasi premium terkurasi dengan traksi kunjungan wisatawan tinggi."
+      value: "78% – 85%",
+      desc: "Didukung lokasi premium dengan traksi kunjungan wisatawan yang konsisten tinggi.",
     },
     {
-      icon: <ShieldCheck size={18} />,
+      icon: <ShieldCheck size={16} />,
       title: "100% Hands-off Management",
       value: "Fully Managed",
-      desc: "Pemeliharaan, operasional harian, dan pemasaran dikelola penuh oleh eksklusif operator."
-    }
+      desc: "Operasional harian & pemasaran dikelola penuh oleh operator eksklusif berpengalaman.",
+    },
   ];
 
   const chartData = [
-    { year: "Tahun 1", height: "45%", income: "IDR 420M", yield: "11.2%" },
-    { year: "Tahun 2", height: "58%", income: "IDR 485M", yield: "12.4%" },
-    { year: "Tahun 3", height: "72%", income: "IDR 550M", yield: "13.1%" },
-    { year: "Tahun 4", height: "85%", income: "IDR 610M", yield: "13.9%" },
-    { year: "Tahun 5", height: "100%", income: "IDR 690M", yield: "14.5%" },
+    { year: "Thn 1", height: "45%", income: "420M", yield: "11.2%" },
+    { year: "Thn 2", height: "58%", income: "485M", yield: "12.4%" },
+    { year: "Thn 3", height: "72%", income: "550M", yield: "13.1%" },
+    { year: "Thn 4", height: "85%", income: "610M", yield: "13.9%" },
+    { year: "Thn 5", height: "100%", income: "690M", yield: "14.5%" },
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className={cn('bg-[#FAFAFA]', 'py-20', 'px-4', 'md:px-8', 'lg:px-16', 'w-full', 'overflow-hidden')}
+      className="bg-[#FAFAF8] py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
     >
-      <div className={cn('mx-auto', 'w-full', 'max-w-[1360px]', 'grid', 'grid-cols-1', 'lg:grid-cols-12', 'gap-12', 'lg:gap-8', 'items-center')}>
-        
-        {/* ========================================================= */}
-        {/* LEFT COLUMN: FINANCIAL VALUE PROPOSITION                  */}
-        {/* ========================================================= */}
-        <div className={cn('lg:col-span-6', 'space-y-6', 'md:space-y-8')}>
-          <div className="space-y-3">
-            <span className={cn('text-[11px]', 'font-extrabold', 'tracking-[0.2em]', 'text-[#543420]', 'uppercase', 'block')}>
-              High-Yield Real Estate
-            </span>
-            <h2 className={cn('font-serif', 'font-light', 'text-3xl', 'md:text-5xl', 'text-[#543420]', 'tracking-tight', 'leading-tight')}>
-              Biarkan Properti Anda <br />
-              <span className={cn('font-semibold', 'italic')}>Bekerja untuk Anda</span>
-            </h2>
-            <p className={cn('text-zinc-500', 'font-light', 'text-xs', 'md:text-sm', 'max-w-xl', 'leading-relaxed', 'pt-1')}>
-              Memiliki unit di **The Osborn Living** bukan sekadar membeli tempat berlibur, melainkan membangun mesin pencetak *passive income* yang aman, tersertifikasi, dan terus bertumbuh seiring waktu.
-            </p>
-          </div>
+      <div className="mx-auto w-full max-w-[1360px]">
 
-          {/* Metrics List */}
-          <div className="space-y-4">
+        {/* SECTION HEADER */}
+        <div
+          className={cn(
+            "mb-16 text-center transition-all duration-700 ease-out",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+        >
+          <span className="inline-block text-[10px] font-extrabold tracking-[0.28em] text-[#543420]/60 uppercase mb-3">
+            High-Yield Real Estate
+          </span>
+          <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug">
+            Biarkan Properti Anda{" "}
+            <span className="font-semibold italic">Bekerja untuk Anda</span>
+          </h2>
+          <div className="flex items-center justify-center gap-3 mt-5">
+            <span className="h-px w-12 bg-[#543420]/20 block" />
+            <Star size={10} className="text-[#543420]/40 fill-[#543420]/20" />
+            <span className="h-px w-12 bg-[#543420]/20 block" />
+          </div>
+          <p className="text-zinc-400 font-light text-sm max-w-xl mx-auto mt-5 leading-relaxed">
+            Memiliki unit di <strong className="text-[#543420] font-semibold">The Osborn Living</strong> berarti
+            membangun mesin <em>passive income</em> yang aman, tersertifikasi, dan terus bertumbuh seiring waktu.
+          </p>
+        </div>
+
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+          {/* LEFT: METRICS */}
+          <div className="lg:col-span-5 space-y-4">
             {investmentMetrics.map((metric, idx) => (
-              <div 
+              <div
                 key={idx}
-                className={cn('flex', 'items-start', 'gap-4', 'p-5', 'bg-white', 'border', 'border-zinc-100', 'rounded-2xl', 'shadow-[0_4px_20px_rgba(84,52,32,0.02)]')}
+                style={{ transitionDelay: isVisible ? `${100 + idx * 120}ms` : "0ms" }}
+                className={cn(
+                  "flex items-start gap-4 p-5 bg-white border border-zinc-100 rounded-2xl",
+                  "shadow-[0_2px_16px_rgba(84,52,32,0.04)] hover:shadow-[0_4px_24px_rgba(84,52,32,0.08)]",
+                  "hover:border-[#543420]/15 transition-all duration-500 ease-out group",
+                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+                )}
               >
-                <div className={cn('p-2.5', 'bg-[#E2D8CC]/30', 'text-[#543420]', 'rounded-xl', 'shrink-0')}>
+                <div className="p-2.5 bg-[#E2D8CC]/40 text-[#543420] rounded-xl shrink-0 group-hover:bg-[#543420] group-hover:text-white transition-colors duration-300">
                   {metric.icon}
                 </div>
-                <div className="space-y-1">
-                  <div className={cn('flex', 'flex-col', 'sm:flex-row', 'sm:items-center', 'gap-1', 'sm:gap-3')}>
-                    <h4 className={cn('text-xs', 'text-zinc-400', 'uppercase', 'tracking-wider', 'font-medium')}>
-                      {metric.title}
-                    </h4>
-                    <span className={cn('text-xs', 'font-bold', 'text-[#543420]', 'sm:border-l', 'sm:border-zinc-200', 'sm:pl-3')}>
-                      {metric.value}
-                    </span>
-                  </div>
-                  <p className={cn('text-zinc-500', 'font-light', 'text-xs', 'leading-relaxed')}>
+                <div className="space-y-1 min-w-0">
+                  <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-medium block">
+                    {metric.title}
+                  </span>
+                  <span className="text-sm font-bold text-[#543420] block">
+                    {metric.value}
+                  </span>
+                  <p className="text-zinc-400 font-light text-xs leading-relaxed">
                     {metric.desc}
                   </p>
                 </div>
               </div>
             ))}
-          </div>
-        </div>
 
-        {/* ========================================================= */}
-        {/* RIGHT COLUMN: ANNOTATED LIVE GRAPH PANEL                  */}
-        {/* ========================================================= */}
-        <div className="lg:col-span-6">
-          <div className={cn('bg-white', 'border', 'border-zinc-200/60', 'rounded-[2.5rem]', 'p-6', 'md:p-8', 'shadow-[0_20px_50px_rgba(84,52,32,0.04)]', 'space-y-6', 'relative')}>
-            
-            {/* Widget Top Bar Header */}
-            <div className={cn('flex', 'justify-between', 'items-center', 'border-b', 'border-zinc-100', 'pb-4')}>
-              <div className={cn('flex', 'items-center', 'gap-3')}>
-                <div className={cn('w-8', 'h-8', 'rounded-lg', 'bg-[#543420]', 'text-[#E2D8CC]', 'flex', 'items-center', 'justify-center')}>
-                  <BarChart3 size={16} />
-                </div>
-                <div>
-                  <h3 className={cn('text-xs', 'md:text-sm', 'font-bold', 'text-[#543420]', 'tracking-wide')}>
-                    Proyeksi Pendapatan Sewa Bersih
-                  </h3>
-                  <span className={cn('text-[10px]', 'text-zinc-400', 'block', 'font-light')}>
-                    Kalkulasi berdasarkan tren apresiasi pasar properti 2026
-                  </span>
-                </div>
-              </div>
-              <span className={cn('text-[10px]', 'bg-[#E2D8CC]/40', 'border', 'border-[#543420]/10', 'text-[#543420]', 'font-bold', 'px-2.5', 'py-1', 'rounded-md')}>
-                5-Year Forecast
-              </span>
-            </div>
-
-            {/* Main Graph Area Container */}
-            <div className={cn('h-[240px]', 'md:h-[280px]', 'w-full', 'flex', 'items-end', 'justify-between', 'gap-2', 'sm:gap-4', 'pt-4', 'px-2', 'relative', 'border-b', 'border-zinc-200')}>
-              
-              {/* Y-Axis Guidelines (Background) */}
-              <div className={cn('absolute', 'inset-x-0', 'top-0', 'h-full', 'flex', 'flex-col', 'justify-between', 'pointer-events-none', 'opacity-40', 'text-[9px]', 'text-zinc-300', 'font-mono')}>
-                <div className={cn('border-b', 'border-dashed', 'border-zinc-200', 'w-full', 'pb-0.5', 'text-right')}>IDR 700M</div>
-                <div className={cn('border-b', 'border-dashed', 'border-zinc-200', 'w-full', 'pb-0.5', 'text-right')}>IDR 525M</div>
-                <div className={cn('border-b', 'border-dashed', 'border-zinc-200', 'w-full', 'pb-0.5', 'text-right')}>IDR 350M</div>
-                <div className={cn('border-b', 'border-dashed', 'border-zinc-200', 'w-full', 'pb-0.5', 'text-right')}>IDR 175M</div>
-              </div>
-
-              {/* Animated Bars Map */}
-              {chartData.map((data, idx) => (
-                <div key={idx} className={cn('flex-1', 'flex', 'flex-col', 'items-center', 'gap-2', 'group', 'z-10', 'relative', 'h-full', 'justify-end')}>
-                  
-                  {/* Floating Micro Tooltip on Hover */}
-                  <div className={cn('absolute', '-top-6', 'bg-[#543420]', 'text-white', 'font-mono', 'font-bold', 'text-[9px]', 'px-2', 'py-0.5', 'rounded', 'opacity-0', 'group-hover:opacity-100', 'transition-opacity', 'pointer-events-none', 'shadow-sm')}>
-                    {data.yield} Yield
-                  </div>
-
-                  {/* The Actual Bar Graphic */}
-                  <div 
-                    className={cn('w-full', 'bg-[#E2D8CC]/40', 'hover:bg-[#543420]', 'rounded-t-xl', 'transition-all', 'duration-[1200ms]', 'ease-out', 'shadow-sm', 'group-hover:shadow-md', 'flex', 'flex-col', 'justify-between', 'p-1.5', 'md:p-2', 'overflow-hidden')}
-                    style={{ 
-                      height: animateChart ? data.height : "0%",
-                      transitionDelay: `${idx * 150}ms` 
-                    }}
-                  >
-                    {/* Inner Text Micro Metric */}
-                    <span className={cn('text-[8px]', 'md:text-[10px]', 'font-bold', 'text-[#543420]', 'group-hover:text-[#E2D8CC]', 'text-center', 'block', 'tracking-tight', 'truncate', 'transition-colors')}>
-                      {data.income}
-                    </span>
-                  </div>
-
-                  {/* X-Axis Label */}
-                  <span className={cn('text-[10px]', 'text-zinc-400', 'font-medium', 'whitespace-nowrap', 'mt-1')}>
-                    {data.year}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Graph Footer Caption Info */}
-            <div className={cn('flex', 'items-start', 'gap-2', 'bg-[#E2D8CC]/10', 'p-4', 'rounded-2xl', 'border', 'border-[#543420]/5')}>
-              <HelpCircle size={14} className={cn('text-[#543420]', 'shrink-0', 'mt-0.5')} />
-              <p className={cn('text-[10px]', 'md:text-[11px]', 'text-[#543420]/80', 'font-light', 'leading-relaxed')}>
-                *Angka di atas merupakan pemodelan finansial moderat mengacu pada performa pasar hospitality lokal. Kenaikan nilai aset pokok properti (*capital gain*) belum termasuk di dalam grafik.
+            {/* Trust strip */}
+            <div
+              style={{ transitionDelay: isVisible ? "480ms" : "0ms" }}
+              className={cn(
+                "flex items-center gap-3 p-4 bg-[#543420] rounded-2xl shadow-lg",
+                "transition-all duration-700 ease-out",
+                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              )}
+            >
+              <ShieldCheck size={18} className="text-[#E2D8CC] shrink-0" />
+              <p className="text-[11px] font-medium text-[#E2D8CC] leading-relaxed tracking-wide">
+                Seluruh proyeksi terikat dalam perjanjian investasi yang tersertifikasi secara hukum.
               </p>
             </div>
+          </div>
 
+          {/* RIGHT: CHART PANEL */}
+          <div
+            style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}
+            className={cn(
+              "lg:col-span-7 transition-all duration-700 ease-out",
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            )}
+          >
+            <div className="bg-white border border-zinc-100 rounded-[2rem] p-6 md:p-8 shadow-[0_8px_40px_rgba(84,52,32,0.06)] space-y-6">
+
+              {/* Chart header */}
+              <div className="flex flex-wrap justify-between items-start gap-4 border-b border-zinc-100 pb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#543420] text-[#E2D8CC] flex items-center justify-center shrink-0">
+                    <BarChart3 size={16} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#543420] tracking-wide">
+                      Proyeksi Pendapatan Sewa Bersih
+                    </h3>
+                    <span className="text-[10px] text-zinc-400 block font-light mt-0.5">
+                      Berdasarkan tren apresiasi pasar properti 2026
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[10px] bg-[#E2D8CC]/40 border border-[#543420]/10 text-[#543420] font-bold px-3 py-1.5 rounded-lg shrink-0">
+                  5-Year Forecast
+                </span>
+              </div>
+
+              {/* Bars */}
+              <div className="relative h-[260px] md:h-[300px] w-full flex items-end gap-3 sm:gap-5 pl-16 pr-1">
+
+                {/* Y-axis grid lines */}
+                <div className="absolute inset-y-0 left-0 right-0 flex flex-col justify-between pointer-events-none">
+                  {["IDR 700M", "IDR 525M", "IDR 350M", "IDR 175M"].map((label, i) => (
+                    <div key={i} className="flex items-center gap-2 w-full">
+                      <span className="text-[9px] text-zinc-300 font-mono w-16 text-right shrink-0 pr-2">{label}</span>
+                      <div className="flex-1 border-t border-dashed border-zinc-100" />
+                    </div>
+                  ))}
+                  <div className="h-0" />
+                </div>
+
+                {/* Bar columns */}
+                {chartData.map((data, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-1 flex flex-col items-center gap-2 group relative h-full justify-end z-10"
+                  >
+                    {/* Tooltip */}
+                    <div className="absolute -top-9 left-1/2 -translate-x-1/2 bg-[#543420] text-white text-[9px] font-bold px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg whitespace-nowrap">
+                      {data.yield} Yield
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#543420] rotate-45" />
+                    </div>
+
+                    {/* Bar */}
+                    <div
+                      className="w-full relative rounded-t-xl overflow-hidden transition-all duration-[1100ms] ease-out cursor-pointer"
+                      style={{
+                        height: animateChart ? data.height : "0%",
+                        transitionDelay: `${idx * 120}ms`,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#543420] to-[#8a6048] group-hover:from-[#432918] group-hover:to-[#7a4f35] transition-all duration-300" />
+                      <div className="absolute top-0 inset-x-0 h-px bg-white/20" />
+                      <div className="absolute top-2 inset-x-0 flex justify-center">
+                        <span className="text-[8px] md:text-[10px] font-bold text-white/90 tracking-tight">
+                          {data.income}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* X-axis label */}
+                    <span className="text-[10px] text-zinc-400 font-medium whitespace-nowrap">
+                      {data.year}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Legend */}
+              <div className="flex flex-wrap gap-5 pt-1 border-t border-zinc-50">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-sm bg-gradient-to-t from-[#543420] to-[#8a6048]" />
+                  <span className="text-[10px] text-zinc-400">Pendapatan Sewa (IDR)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-px bg-[#543420]/30 border-t border-dashed border-[#543420]/30" />
+                  <span className="text-[10px] text-zinc-400">Yield tahunan proyeksi</span>
+                </div>
+              </div>
+
+              {/* Disclaimer */}
+              <div className="flex items-start gap-2.5 bg-[#faf7f4] p-4 rounded-2xl border border-[#543420]/6">
+                <HelpCircle size={13} className="text-[#543420]/50 shrink-0 mt-0.5" />
+                <p className="text-[10px] md:text-[11px] text-[#543420]/60 font-light leading-relaxed">
+                  *Angka merupakan pemodelan finansial moderat berdasarkan performa pasar hospitality lokal.
+                  Kenaikan nilai aset pokok (<em>capital gain</em>) belum termasuk dalam grafik di atas.
+                </p>
+              </div>
+
+            </div>
           </div>
         </div>
-
       </div>
     </section>
   );
