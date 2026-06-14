@@ -1,0 +1,45 @@
+import type React from "react"
+import "@/app/globals.css"
+import { Inter } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Metadata } from "next"
+import Navbar from "@/components/sections/Navbar"
+import Footer from "@/components/sections/Footer" // Kita akan buat ini
+import Script from "next/script"
+import { cn } from "@/lib/utils";
+
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "The Osborn Living - Temukan Tempat Investasi Terbaik Bersama Kami",
+  description: "Kenyamanan dimulai dari tempat tinggalmu. Exclusive home cluster with infinity pool di dekat BNS, mulai Rp 700 juta",
+  icons: {
+    icon: "/favicon.png", // Sesuaikan dengan nama file di folder public
+  },
+  generator: 'v0.dev'
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+      </head>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <div className={cn('flex', 'min-h-screen', 'flex-col')}>
+            {/* Navbar akan ditaruh di sini nanti */}
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
