@@ -59,11 +59,9 @@ export default function Location() {
     <section 
       id="location" 
       ref={sectionRef}
-      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden relative"
     >
-      {/* Accent Light Background Gradient */}
-      {/* AKUBAH: Mengubah pancaran glow radial bawah menjadi rona amber tipis */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* PERBAIKAN: Elemen lingkaran pembawa efek 'blur-3xl' warna amber/orange pengganggu di sini SUDAH DIHAPUS TOTAL */}
 
       <div className="mx-auto w-full max-w-[1360px]">
         
@@ -113,7 +111,6 @@ export default function Location() {
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={cn(
                       "flex items-center justify-between p-4.5 rounded-xl border transition-all duration-300 cursor-pointer group",
-                      /* AKUBAH: Mengubah background hover list dari cokelat tua ke terracotta hangat */
                       hoveredIndex === idx 
                         ? "bg-[#E67E22] border-[#E67E22] text-white shadow-xl shadow-[#E67E22]/20 scale-[1.01]" 
                         : "bg-[#FAFAFA] border-zinc-100 text-[#543420] hover:bg-zinc-50"
@@ -122,7 +119,6 @@ export default function Location() {
                     <div className="space-y-0.5 min-w-0 pr-2">
                       <span className={cn(
                         "text-[9px] font-bold uppercase tracking-wider block transition-colors duration-300",
-                        /* AKUBAH: Rona label kategori saat list dalam kondisi ter-hover */
                         hoveredIndex === idx ? "text-[#F39C12]" : "text-zinc-400"
                       )}>
                         {spot.category}
@@ -136,7 +132,6 @@ export default function Location() {
                       "flex items-center gap-1.5 shrink-0 pl-4 font-mono text-xs font-bold px-3 py-1.5 rounded-lg transition-colors duration-300",
                       hoveredIndex === idx ? "bg-white/10 text-white" : "bg-[#543420]/5 text-[#543420]"
                     )}>
-                      {/* AKUBAH: Rona ikon mobil kecil di dalam list */}
                       <Car size={13} className={hoveredIndex === idx ? "text-white" : "text-[#543420]/60"} />
                       <span>{spot.time}</span>
                     </div>
@@ -146,7 +141,6 @@ export default function Location() {
             </div>
 
             {/* Micro Call-to-action Card */}
-            {/* AKUBAH: Mengubah boks ajakan survey menggunakan background amber transparan tipis & border kiri kokoh */}
             <div className="p-5 bg-[#F39C12]/5 border border-[#E67E22]/10 border-l-4 border-l-[#E67E22] rounded-2xl flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#E67E22] text-white flex items-center justify-center shrink-0 shadow-inner">
@@ -161,7 +155,6 @@ export default function Location() {
                 href="https://www.google.com/maps/place/The+Osborn+Living/@-7.8713679,112.5361277,672m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e78810071e5329f:0xd6aeb00719d4879c!8m2!3d-7.8713732!4d112.5387026!16s%2Fg%2F11y48cgz0q?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                /* AKUBAH: Efek interaktif tombol panah berganti ke rona terracotta jernih saat di-hover */
                 className="w-9 h-9 bg-white border border-[#543420]/10 text-[#543420] rounded-xl flex items-center justify-center shadow-sm hover:bg-[#E67E22] hover:border-[#E67E22] hover:text-white hover:scale-105 transition-all duration-300"
               >
                 <ArrowUpRight size={16} />
@@ -181,7 +174,6 @@ export default function Location() {
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={cn(
                   "relative h-[240px] sm:h-full min-h-[240px] rounded-2xl overflow-hidden shadow-sm group border border-zinc-100 transition-all duration-500",
-                  /* AKUBAH: Efek bayangan boks gambar mengadopsi rona bayangan terracotta */
                   hoveredIndex === idx ? "shadow-2xl shadow-[#E67E22]/15" : ""
                 )}
               >
@@ -199,7 +191,6 @@ export default function Location() {
                 />
                 
                 {/* Gradient Shading */}
-                {/* AKUBAH: Gradasi bayangan bawah gambar dikombinasikan dengan gradien gelap ke terracotta tipis */}
                 <div className={cn(
                   "absolute inset-0 bg-gradient-to-t from-[#432918] via-[#543420]/40 to-transparent transition-opacity duration-300",
                   hoveredIndex === idx ? "opacity-95" : "opacity-80"
@@ -209,7 +200,6 @@ export default function Location() {
                 <div className="absolute inset-x-0 bottom-0 p-5 text-white flex flex-col justify-end h-full z-10">
                   <div className="flex items-end justify-between gap-3">
                     <div className="space-y-1.5 min-w-0">
-                      {/* AKUBAH: Mengubah warna teks tag kategori di atas gambar menjadi warna kuning amber manis */}
                       <span className="text-[9px] font-bold tracking-widest text-[#F39C12] uppercase bg-black/30 backdrop-blur-md px-2.5 py-0.5 rounded border border-white/10 inline-block">
                         {spot.category}
                       </span>
@@ -223,7 +213,6 @@ export default function Location() {
 
                     {/* Time Badge in Image corner */}
                     <div className="bg-white text-[#543420] px-3 py-2 rounded-xl flex flex-col items-center justify-center shadow-lg border border-zinc-100 shrink-0 text-center min-w-[70px]">
-                      {/* AKUBAH: Highlight teks penunjuk waktu menit memakai warna terakota jernih */}
                       <span className="text-xs font-extrabold leading-none tracking-tight text-[#D35400]">{spot.time}</span>
                       <span className="text-[8px] text-zinc-400 font-bold tracking-wide uppercase mt-1">{spot.distance}</span>
                     </div>
@@ -231,7 +220,6 @@ export default function Location() {
                 </div>
 
                 {/* Active Highlight Border Line */}
-                {/* AKUBAH: Garis tepi bingkai aktif melayang diubah dari krem pasif ke terracotta orange jernih */}
                 <div className={cn(
                   "absolute inset-0 border-2 rounded-2xl transition-all duration-300 pointer-events-none z-20",
                   hoveredIndex === idx ? "border-[#E67E22]" : "border-transparent"
