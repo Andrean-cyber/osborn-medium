@@ -22,10 +22,7 @@ export default function Hero() {
         "pt-24 pb-16 px-4 md:px-8 lg:px-16 flex items-center"
       )}
     >
-      {/* Background texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.015]" />
-
-      <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
+            <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
         {/* ── LEFT: TYPOGRAPHY & CTA ── */}
         <div className="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left">
 
