@@ -31,10 +31,9 @@ export default function VideoReview() {
     <section 
       id="video-review" 
       ref={sectionRef}
-      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden relative"
     >
-      {/* Background Ornaments */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -z-10" />
+      {/* PERBAIKAN UTAMA: Elemen hiasan lingkaran 'w-[500px] h-[500px] bg-[#F39C12]/5 blur-3xl' di sini SUDAH DIHAPUS TOTAL */}
 
       <div className="mx-auto w-full max-w-[1360px]">
         
@@ -52,7 +51,6 @@ export default function VideoReview() {
             </span>
           </div>
 
-          {/* AKUBAH: Mengembalikan judul H2 yang hilang dan memberikan aksen Terracotta */}
           <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug mt-3">
             Analisis Cerdas{" "}
             <span className="font-semibold italic text-[#E67E22]">Sebelum Anda Membeli</span>
@@ -90,13 +88,11 @@ export default function VideoReview() {
 
                 {/* Micro Floating Badges */}
                 <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl flex items-center gap-2 shadow-sm border border-zinc-100/50">
-                  {/* AKUBAH: Mengubah warna ikon speaker mikro */}
                   <Volume2 size={12} className="text-[#E67E22] animate-bounce" />
                   <span className="text-[10px] font-bold text-zinc-800 tracking-wide">Eksklusif Walkthrough Tour</span>
                 </div>
 
                 {/* MAIN FLOATING PLAY BUTTON */}
-                {/* AKUBAH: Tombol putar berganti ke rona Terracotta pekat saat kursor mendekat */}
                 <div className="absolute inset-0 m-auto w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-md text-white group-hover:bg-[#E67E22] group-hover:text-white rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl border border-white/30 group-hover:scale-110 group-hover:rotate-12 z-20">
                   <Play size={24} className="fill-current translate-x-0.5" />
                 </div>
@@ -120,11 +116,9 @@ export default function VideoReview() {
             <div className="space-y-4">
               <h3 className="text-xl md:text-2xl font-semibold text-[#543420] tracking-tight leading-snug">
                 Beli Villa Belum Jadi, <br />
-                {/* AKUBAH: Menyelaraskan teks sub-judul */}
                 <span className="font-light italic text-lg md:text-xl text-[#D35400] block mt-1">Apakah Benar-Benar Worth It?</span>
               </h3>
               
-              {/* AKUBAH: Mengubah garis tepi sebelah kiri boks testimoni menggunakan aksen terracotta */}
               <p className="text-[#543420] font-medium text-sm md:text-base italic leading-relaxed bg-[#E2D8CC]/20 p-4 rounded-2xl border-l-4 border-[#E67E22] text-left">
                 “Ternyata banyak yang belum tahu kalau beli Villa yang masih dalam proses pembangunan tuh banyak banget benefitnya! 🔥”
               </p>
@@ -143,7 +137,6 @@ export default function VideoReview() {
                 "Potensi lonjakan Capital Gain sejak awal pembangunan",
               ].map((bullet, index) => (
                 <div key={index} className="flex items-center gap-3 text-zinc-700 text-xs font-medium">
-                  {/* AKUBAH: Ikon centang peluru diganti ke rona terracotta orange jernih */}
                   <CheckCircle size={15} className="text-[#E67E22] shrink-0" />
                   <span className="text-zinc-600 font-light">{bullet}</span>
                 </div>
@@ -152,7 +145,6 @@ export default function VideoReview() {
 
             {/* Direct Instant Action Button */}
             <div className="pt-2">
-              {/* AKUBAH: Tombol utama mendapatkan efek transisi hover ke rona terracotta jernih */}
               <a 
                 href={youtubeShortsUrl}
                 target="_blank"

@@ -50,10 +50,9 @@ export default function SurveyCarousel() {
     <section 
       id="survey-showcase" 
       ref={sectionRef}
-      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden relative"
     >
-      {/* Background Subtle Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* PERBAIKAN UTAMA: Elemen 'w-[600px] h-[600px] bg-[#F39C12]/5 blur-3xl' SUDAH DIHAPUS TOTAL */}
 
       <div className="mx-auto w-full max-w-[1360px]">
         
@@ -69,7 +68,7 @@ export default function SurveyCarousel() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug mt-3">
-            Keseruan Dokumentasi {" "}
+            Kseruan Dokumentasi {" "}
             <span className="font-semibold italic text-[#E67E22]">Survei Lokasi</span>
           </h2>
           
@@ -78,7 +77,7 @@ export default function SurveyCarousel() {
           </p>
         </div>
 
-        {/* ── ELEGANT PORTRAIT GRID CARDS (3 Columns Row / Scrollable Mobile) ── */}
+        {/* ── ELEGANT PORTRAIT GRID CARDS ── */}
         <div className={cn(
           "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-1000 delay-200 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
@@ -112,7 +111,7 @@ export default function SurveyCarousel() {
                 <span className="text-[9px] font-bold text-white tracking-wide uppercase">Oro-Oro Ombo</span>
               </div>
 
-              {/* INTERACTIVE HOVER CARD DETAILS: Rises clean from bottom */}
+              {/* INTERACTIVE HOVER CARD DETAILS */}
               <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10">
                 <div className="space-y-2">
                   <span className="text-[9px] font-bold tracking-widest text-[#F39C12] uppercase block">

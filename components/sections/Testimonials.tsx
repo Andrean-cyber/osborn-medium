@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Star, Quote, Sparkles, Building2, ShieldCheck, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -54,12 +54,12 @@ export default function Testimonials() {
     <section 
       id="testimonials" 
       ref={sectionRef}
-      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden relative"
     >
       {/* Decorative Top Shadow Blend */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#E67E22]/20 to-transparent" />
-      {/* Background Subtle Glow Accent */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      
+      {/* PERBAIKAN UTAMA: Elemen hiasan lingkaran 'w-[500px] h-[500px] bg-[#F39C12]/5 blur-3xl' di pojok kanan bawah SUDAH DIHAPUS TOTAL */}
 
       <div className="mx-auto w-full max-w-[1360px]">
         
@@ -97,21 +97,18 @@ export default function Testimonials() {
               style={{ transitionDelay: isVisible ? `${idx * 150}ms` : "0ms" }}
               className={cn(
                 "bg-white border border-zinc-200/60 rounded-[2rem] p-6 md:p-8 flex flex-col justify-between relative group text-left transition-all duration-1000 ease-out",
-                /* AKUBAH: Shadow dan warna border berubah ke rona terakota tipis saat di-hover */
                 isVisible 
                   ? "opacity-100 translate-y-0 shadow-[0_15px_40px_rgba(84,52,32,0.01)] hover:shadow-[0_25px_50px_rgba(230,126,34,0.08)] hover:-translate-y-1 hover:border-[#E67E22]/25" 
                   : "opacity-0 translate-y-12 shadow-none"
               )}
             >
               {/* Decorative Floating Quote Icon */}
-              {/* AKUBAH: Ubah warna hover ikon tanda petik melayang menjadi terakota muda */}
               <div className="absolute top-6 right-6 text-[#E2D8CC]/30 group-hover:text-[#E67E22]/10 transition-colors duration-300 pointer-events-none">
                 <Quote size={32} className="fill-current" />
               </div>
 
               <div className="space-y-5 relative z-10">
                 {/* Five Stars Rating */}
-                {/* AKUBAH: Mengubah sistem rating lima bintang ke warna emas hangat amber (#F39C12) */}
                 <div className="flex items-center gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={11} className="fill-[#F39C12] text-[#F39C12]" />
@@ -141,7 +138,6 @@ export default function Testimonials() {
                     <h4 className="text-xs font-bold text-[#543420] truncate">
                       {item.author}
                     </h4>
-                    {/* AKUBAH: Mengubah warna boks lingkaran ikon sorotan kecil dari krem menjadi amber-terracotta */}
                     <div className="w-5 h-5 rounded-full bg-[#F39C12]/10 text-[#E67E22] flex items-center justify-center shrink-0 shadow-sm group-hover:bg-[#E67E22] group-hover:text-white transition-all duration-300">
                       {item.highlightIcon}
                     </div>
@@ -166,7 +162,6 @@ export default function Testimonials() {
         {/* ========================================================= */}
         {/* BOTTOM SOCIAL PROOF METRIC                                */}
         {/* ========================================================= */}
-        {/* AKUBAH: Menambahkan border penunjuk kiri tebal berwarna terakota agar seirama */}
         <div className={cn(
           "mt-12 p-6 bg-[#543420] border-l-4 border-l-[#E67E22] text-white rounded-[2rem] text-center max-w-2xl mx-auto relative overflow-hidden transition-all duration-1000 delay-500 ease-out",
           isVisible ? "opacity-100 scale-100 shadow-xl shadow-[rgba(84,52,32,0.15)]" : "opacity-0 scale-95 shadow-none"
@@ -177,7 +172,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Active Frame Boundary Accent to close layout harmoniously */}
+        {/* Active Frame Boundary Accent */}
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#E67E22]/10 to-transparent" />
       </div>
     </section>

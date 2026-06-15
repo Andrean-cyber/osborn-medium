@@ -1,25 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { CheckCircle2, Mountain, BedDouble, Bath, Gift, Sparkles, ShieldCheck, ArrowRight, Home, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { CheckCircle2, Mountain, BedDouble, Bath, Gift, Sparkles, ShieldCheck, ArrowRight, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Pricing() {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    // Sederhanakan trigger animasi tanpa menggunakan ref tambahan jika dirasa membebani browser mobile
+    const t = setTimeout(() => setIsVisible(true), 150);
+    return () => clearTimeout(t);
   }, []);
 
   const villaFeatures = [
@@ -39,12 +30,9 @@ export default function Pricing() {
   return (
     <section 
       id="pricing" 
-      ref={sectionRef}
-      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden relative"
     >
-      {/* Background Subtle Gradient Blurs */}
-      {/* AKUBAH: Mengubah pancaran glow radial background menjadi rona amber hangat lembut */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* PERBAIKAN UTAMA: Elemen hiasan lingkaran berspesifikasi 'w-[600px] blur-3xl' warna amber/orange SUDAH DIHAPUS TOTAL */}
       
       <div className="mx-auto w-full max-w-[1240px]">
         
@@ -55,14 +43,12 @@ export default function Pricing() {
           "mb-10 text-center transition-all duration-1000 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          {/* AKUBAH: Penyesuaian warna boks badge info harga */}
           <div className="inline-flex items-center gap-2 bg-[#F39C12]/10 border border-[#E67E22]/20 px-3.5 py-1.5 rounded-full">
             <Sparkles size={12} className="text-[#E67E22]" />
             <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#D35400]">
               Transparent Investment
             </span>
           </div>
-          {/* AKUBAH: Sentuhan rona terracotta miring pada sub-judul penawaran */}
           <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug mt-3">
             Penawaran Eksklusif {" "}
             <span className="font-semibold italic text-[#E67E22]">Satu Harga, All-Inclusive</span>
@@ -76,7 +62,6 @@ export default function Pricing() {
         {/* ========================================================= */}
         {/* MAIN SINGLE PRICE CARD GRID                               */}
         {/* ========================================================= */}
-        {/* AKUBAH: Garis pembatas luar grid card utama diselaraskan menggunakan rona terracotta tipis */}
         <div className={cn(
           "grid grid-cols-1 lg:grid-cols-12 gap-0 border border-[#E67E22]/20 rounded-[2.5rem] overflow-hidden bg-white transition-all duration-1000 delay-200 ease-out",
           isVisible ? "opacity-100 scale-100 shadow-[0_30px_70px_rgba(230,126,34,0.06)]" : "opacity-0 scale-[0.98] shadow-none"
@@ -95,7 +80,6 @@ export default function Pricing() {
               </div>
 
               {/* Special Mountain View Accent Banner */}
-              {/* AKUBAH: Mengubah boks informasi panorama alam menggunakan background amber dan border kiri terracotta */}
               <div className="bg-[#F39C12]/5 border border-[#E67E22]/10 border-l-4 border-l-[#E67E22] p-4.5 rounded-2xl flex items-start gap-3.5">
                 <div className="p-2.5 bg-white text-[#E67E22] rounded-xl shadow-sm shrink-0">
                   <Mountain size={18} />
@@ -116,7 +100,6 @@ export default function Pricing() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {villaFeatures.map((feat, idx) => (
                     <div key={idx} className="flex items-center gap-3 text-zinc-700 text-xs font-medium">
-                      {/* AKUBAH: Boks kecil pembungkus ikon denah diganti ke rona terakota transparan tipis */}
                       <div className="w-6 h-6 rounded-lg bg-[#E67E22]/10 text-[#E67E22] flex items-center justify-center shrink-0">
                         {feat.icon}
                       </div>
@@ -129,7 +112,6 @@ export default function Pricing() {
 
             {/* Legal Guarantee Subtext */}
             <div className="pt-6 border-t border-zinc-100 flex items-center gap-2.5 text-zinc-400 text-[11px] font-light">
-              {/* AKUBAH: Ikon tameng penjamin legalitas diganti ke warna terracotta */}
               <ShieldCheck size={14} className="text-[#E67E22] shrink-0" />
               <span>Ikatan serah terima unit tepat waktu dijamin dengan jaminan penalti tertulis secara hukum.</span>
             </div>
@@ -158,7 +140,6 @@ export default function Pricing() {
 
               {/* Exclusive Bonuses List Container */}
               <div className="space-y-4 pt-5 border-t border-white/10">
-                {/* AKUBAH: Menyelaraskan teks label hadiah bonus menggunakan warna warm amber jernih */}
                 <div className="flex items-center gap-2 text-[#F39C12]">
                   <Gift size={14} />
                   <span className="text-[10px] font-bold tracking-widest uppercase">Bonus Pembelian Bulan Ini</span>
@@ -167,7 +148,6 @@ export default function Pricing() {
                 <div className="space-y-3">
                   {exclusiveBonuses.map((bonus, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs">
-                      {/* AKUBAH: Ikon centang penunjuk bonus diubah menjadi warna terracotta orange menyala */}
                       <CheckCircle2 size={14} className="text-[#E67E22] shrink-0 mt-0.5" />
                       <span className="text-zinc-200 font-light leading-snug">{bonus}</span>
                     </div>
@@ -178,15 +158,13 @@ export default function Pricing() {
 
             {/* Main Action CTA Button */}
             <div className="pt-8 relative z-10">
-              {/* AKUBAH: Mengubah interaksi warna dasar tombol ajukan LOI agar berubah jadi terracotta pekat saat di-hover */}
               <a
-                href="https://wa.me/6281234567890" 
+                href="https://wa.me/62816500160" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-3 bg-[#E2D8CC] hover:bg-[#E67E22] text-[#543420] hover:text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95 w-full text-center"
               >
                 <span>Ajukan LOI & Booking Unit</span>
-                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
               </a>
               <span className="text-[9px] text-center block text-[#E2D8CC]/50 mt-3 font-light tracking-wide">
                 *Hanya tersedia 1 unit untuk plot view pegunungan terbaik ini.

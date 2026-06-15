@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import {
-  Layers, Maximize2, BedDouble, Bath, ShieldCheck,
+  Layers, Maximize2, BedDouble, Bath, 
   Sparkles, Building, Flower2, Car, Mountain, Wind, Sunset, TreePine, Check
 } from "lucide-react";
 
@@ -65,7 +65,7 @@ export default function UnitDetail() {
   return (
     <section
       id="explore"
-      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden relative"
     >
       <div ref={sectionRef} className="mx-auto w-full max-w-[1360px]">
 
@@ -76,7 +76,6 @@ export default function UnitDetail() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* AKUBAH: Menggunakan warna hangat Terracotta/Amber pada badge */}
           <div className="inline-flex items-center gap-2 bg-[#F39C12]/10 border border-[#E67E22]/20 px-3.5 py-1.5 rounded-full">
             <Sparkles size={12} className="text-[#E67E22]" />
             <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#D35400]">
@@ -90,13 +89,13 @@ export default function UnitDetail() {
         </div>
 
         {/* ── TABS ── */}
+        {/* PERBAIKAN: Mengatur gap agar lebih rapat di mobile (gap-4 sm:gap-12) agar tidak mendorong layout keluar viewport */}
         <div
           className={cn(
-            "flex justify-center border-b border-[#543420]/10 mb-12 gap-2 sm:gap-8 transition-all duration-700 delay-100 ease-out",
+            "flex justify-center border-b border-[#543420]/10 mb-12 gap-4 sm:gap-12 transition-all duration-700 delay-100 ease-out w-full",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}
         >
-          {/* AKUBAH: Tab aktif kini menggunakan highlight warna #E67E22 agar lebih pop-up */}
           {[
             { id: "spec", name: "Spesifikasi Unit" },
             { id: "facility", name: "Fasilitas & Fitur" },
@@ -105,7 +104,7 @@ export default function UnitDetail() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as "spec" | "facility")}
               className={cn(
-                "pb-4 px-1 text-xs md:text-sm tracking-widest uppercase border-b-2 transition-all duration-300 shrink-0 whitespace-nowrap font-medium",
+                "pb-4 px-1 text-xs md:text-sm tracking-widest uppercase border-b-2 transition-all duration-300 whitespace-nowrap font-medium cursor-pointer",
                 activeTab === tab.id
                   ? "border-[#E67E22] text-[#E67E22] font-bold"
                   : "border-transparent text-zinc-400 hover:text-[#543420]/70"
@@ -148,15 +147,14 @@ export default function UnitDetail() {
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   )}
                 >
-                  {/* AKUBAH: Ikon penanda spec menggunakan warna orange lembut dan berganti pekat saat di-hover */}
                   <div className="p-2.5 bg-[#F39C12]/10 text-[#E67E22] rounded-xl shadow-sm border border-[#E67E22]/10 shrink-0 group-hover:bg-[#E67E22] group-hover:text-white transition-all duration-300">
                     {item.icon}
                   </div>
-                  <div className="space-y-0.5">
+                  <div className="space-y-0.5 min-w-0 flex-1">
                     <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider block">
                       {item.label}
                     </span>
-                    <span className="text-xs md:text-sm font-semibold text-[#543420] block tracking-wide">
+                    <span className="text-xs md:text-sm font-semibold text-[#543420] block tracking-wide truncate">
                       {item.value}
                     </span>
                   </div>
@@ -186,11 +184,10 @@ export default function UnitDetail() {
                       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                     )}
                   >
-                    {/* AKUBAH: Aksen warna orange tua pada boks poin ikon lokasi */}
                     <div className="mt-0.5 p-1.5 bg-[#E67E22]/10 text-[#D35400] rounded-lg shrink-0 group-hover:bg-[#E67E22] group-hover:text-white transition-colors duration-300">
                       {pt.icon}
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <span className="text-[11px] font-bold text-[#543420] block leading-tight">
                         {pt.label}
                       </span>
@@ -211,7 +208,6 @@ export default function UnitDetail() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               )}
             >
-              {/* AKUBAH: Lingkaran centang diubah jadi warna aksen orange hangat */}
               <div className="w-6 h-6 rounded-full bg-[#E67E22] text-white flex items-center justify-center shrink-0">
                 <Check size={12} strokeWidth={3} />
               </div>
@@ -241,7 +237,6 @@ export default function UnitDetail() {
               {/* Floating label */}
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg">
-                  {/* AKUBAH: Label kecil di atas gambar disematkan warna terakota */}
                   <p className="text-[10px] font-extrabold tracking-widest text-[#E67E22] uppercase">
                     {activeTab === "spec" ? "Tipe Unit" : "Fasilitas"}
                   </p>
@@ -262,12 +257,11 @@ export default function UnitDetail() {
                   key={i}
                   className={cn(
                     "bg-[#faf7f4] border border-[#543420]/8 rounded-2xl p-4 text-center",
-                    "transition-all duration-700 ease-out hover:border-[#E67E22]/30 transition-colors",
+                    "transition-all duration-700 ease-out hover:border-[#E67E22]/30",
                     isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
                   )}
                   style={{ transitionDelay: isVisible ? `${500 + i * 100}ms` : "0ms" }}
                 >
-                  {/* AKUBAH: Angka dimensi tanah & bangunan di-highlight menggunakan warna terracotta */}
                   <p className="text-xl font-bold text-[#D35400]">{stat.value}</p>
                   <p className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider mt-0.5">{stat.label}</p>
                 </div>
