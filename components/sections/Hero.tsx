@@ -22,14 +22,9 @@ export default function Hero() {
         "pt-24 pb-16 px-4 md:px-8 lg:px-16 flex items-center"
       )}
     >
-      {/* Background texture bintik halus - tetap dipertahankan karena sangat ringan */}
+      {/* Background texture bintik halus */}
       <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.015] pointer-events-none -z-10" />
 
-      {/* PERBAIKAN UTAMA: 
-        1. Efek lingkaran blur orange (glow-radial) sudah DIHAPUS TOTAL dari sini.
-        2. Menambahkan 'overflow-hidden' pada grid pembungkus utama agar animasi gambar 
-           di dalam col-span-6 terpotong rapi di batas layar mobile.
-      */}
       <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
 
         {/* ── LEFT: TYPOGRAPHY & CTA ── */}
@@ -77,10 +72,11 @@ export default function Hero() {
           </div>
 
           {/* 4 — Stats mini-grid */}
+          {/* PERBAIKAN: Memastikan text-center diterapkan secara global di mobile agar anak text flex ikut seirama */}
           <div
             className={cn(
               anim, "duration-700 delay-[450ms]",
-              "grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 pt-2",
+              "grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto lg:mx-0 pt-2 text-center lg:text-left",
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
@@ -89,9 +85,25 @@ export default function Hero() {
               { value: "80 m²", label: "Luas Bangunan" },
               { value: "Strategic", label: "Location" },
             ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center lg:items-start border-l border-[#E67E22]/20 pl-4">
-                <span className="text-xl md:text-2xl font-bold text-[#543420]">{s.value}</span>
-                <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider mt-0.5">{s.label}</span>
+              /* PERBAIKAN UTAMA: 
+                 - Mengubah border-l (kiri) menjadi border-r (kanan) agar simetris saat posisi di center layar HP.
+                 - 'last:border-r-0' digunakan agar item ketiga (Strategic Location) tidak memiliki garis sisa di paling kanan.
+                 - Menggunakan 'lg:border-l lg:border-r-0 lg:pl-4 lg:pr-0' untuk mengembalikan posisi garis ke kiri saat layar desktop.
+              */
+              <div 
+                key={i} 
+                className={cn(
+                  "flex flex-col items-center lg:items-start justify-center",
+                  "border-r border-[#E67E22]/20 last:border-r-0 px-1 sm:px-2",
+                  "lg:border-l lg:border-r-0 lg:pl-4 lg:pr-0"
+                )}
+              >
+                <span className="text-sm sm:text-xl md:text-2xl font-bold text-[#543420] whitespace-nowrap">
+                  {s.value}
+                </span>
+                <span className="text-[9px] sm:text-[10px] text-zinc-400 font-medium uppercase tracking-wider mt-0.5 leading-tight">
+                  {s.label}
+                </span>
               </div>
             ))}
           </div>
@@ -125,10 +137,9 @@ export default function Hero() {
         </div>
 
         {/* ── RIGHT: VISUAL SHOWCASE ── */}
-        {/* PERBAIKAN: Memastikan wadah visual mengunci luapan horizontal di mobile */}
         <div className="lg:col-span-6 relative h-[450px] md:h-[580px] w-full mt-6 lg:mt-0 overflow-hidden lg:overflow-visible">
 
-          {/* Decorative background block (Blok krem transparan tipis pengganti lingkaran blur) */}
+          {/* Decorative background block */}
           <div
             className={cn(
               anim, "duration-700 delay-[200ms]",
@@ -142,7 +153,6 @@ export default function Hero() {
             className={cn(
               anim, "duration-[900ms] delay-[350ms]",
               "absolute left-0 top-0 w-[75%] h-[85%] rounded-[2rem] overflow-hidden border-4 border-white shadow-[0_30px_60px_rgba(84,52,32,0.15)] z-10",
-              /* Menggunakan translasi vertikal (translate-y) agar aman dari kebocoran layar kanan */
               isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
             )}
           >
