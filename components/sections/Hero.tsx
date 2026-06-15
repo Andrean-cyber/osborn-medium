@@ -22,7 +22,16 @@ export default function Hero() {
         "pt-24 pb-16 px-4 md:px-8 lg:px-16 flex items-center"
       )}
     >
-            <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
+      {/* Background texture bintik halus - tetap dipertahankan karena sangat ringan */}
+      <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.015] pointer-events-none -z-10" />
+
+      {/* PERBAIKAN UTAMA: 
+        1. Efek lingkaran blur orange (glow-radial) sudah DIHAPUS TOTAL dari sini.
+        2. Menambahkan 'overflow-hidden' pada grid pembungkus utama agar animasi gambar 
+           di dalam col-span-6 terpotong rapi di batas layar mobile.
+      */}
+      <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
+
         {/* ── LEFT: TYPOGRAPHY & CTA ── */}
         <div className="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left">
 
@@ -46,7 +55,7 @@ export default function Hero() {
               className={cn(
                 anim, "duration-700 delay-[150ms]",
                 "font-light text-4xl md:text-6xl text-[#543420] tracking-tight leading-[1.1]",
-                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}
             >
               Designed for Life <br />
@@ -58,7 +67,7 @@ export default function Hero() {
               className={cn(
                 anim, "duration-700 delay-[300ms]",
                 "text-zinc-600 font-light text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed",
-                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}
             >
               Temukan villa eksklusif di{" "}
@@ -72,7 +81,7 @@ export default function Hero() {
             className={cn(
               anim, "duration-700 delay-[450ms]",
               "grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 pt-2",
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
             {[
@@ -92,7 +101,7 @@ export default function Hero() {
             className={cn(
               anim, "duration-700 delay-[600ms]",
               "flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4",
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
             <a
@@ -116,13 +125,14 @@ export default function Hero() {
         </div>
 
         {/* ── RIGHT: VISUAL SHOWCASE ── */}
-        <div className="lg:col-span-6 relative h-[450px] md:h-[580px] w-full mt-6 lg:mt-0">
+        {/* PERBAIKAN: Memastikan wadah visual mengunci luapan horizontal di mobile */}
+        <div className="lg:col-span-6 relative h-[450px] md:h-[580px] w-full mt-6 lg:mt-0 overflow-hidden lg:overflow-visible">
 
-          {/* Decorative block */}
+          {/* Decorative background block (Blok krem transparan tipis pengganti lingkaran blur) */}
           <div
             className={cn(
               anim, "duration-700 delay-[200ms]",
-              "absolute right-[40%] top-[10%] w-[35%] h-[40%] bg-[#F39C12]/20 rounded-[1.5rem] -z-10",
+              "absolute right-[45%] top-[10%] w-[35%] h-[40%] bg-[#543420]/5 rounded-[1.5rem] -z-10",
               isLoaded ? "opacity-100 rotate-6 scale-100" : "opacity-0 rotate-0 scale-90"
             )}
           />
@@ -132,8 +142,8 @@ export default function Hero() {
             className={cn(
               anim, "duration-[900ms] delay-[350ms]",
               "absolute left-0 top-0 w-[75%] h-[85%] rounded-[2rem] overflow-hidden border-4 border-white shadow-[0_30px_60px_rgba(84,52,32,0.15)] z-10",
-              /* PERBAIKAN: Mengubah translate-x-12 menjadi translate-y-8 agar tidak menabrak batas kanan layar mobile */
-              isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
+              /* Menggunakan translasi vertikal (translate-y) agar aman dari kebocoran layar kanan */
+              isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
             )}
           >
             <Image
@@ -157,7 +167,7 @@ export default function Hero() {
             className={cn(
               anim, "duration-[900ms] delay-[550ms]",
               "absolute right-0 bottom-0 w-[55%] h-[60%] rounded-[1.5rem] overflow-hidden border-4 border-white shadow-[0_20px_40px_rgba(84,52,32,0.12)] z-20",
-              isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
+              isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
             )}
           >
             <Image
@@ -177,7 +187,7 @@ export default function Hero() {
             className={cn(
               anim, "duration-700 delay-[750ms]",
               "absolute left-4 bottom-4 md:left-28 md:bottom-12 bg-[#543420] border-l-4 border-[#E67E22] text-white p-4 rounded-2xl shadow-xl flex items-center gap-3 z-30",
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
             <div className="p-2 bg-white/10 rounded-xl text-[#E67E22]">
