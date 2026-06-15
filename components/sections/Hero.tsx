@@ -24,12 +24,6 @@ export default function Hero() {
     >
       {/* Background texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.015]" />
-      
-      {/* PERBAIKAN UTAMA: Membungkus lingkaran blur ke dalam kontainer yang dikunci overflow-hidden */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-        {/* Glow radial background — sekarang aman tidak akan membocorkan layar */}
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[#F39C12]/8 rounded-full blur-3xl" />
-      </div>
 
       <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
         {/* ── LEFT: TYPOGRAPHY & CTA ── */}
