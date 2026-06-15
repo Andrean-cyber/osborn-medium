@@ -26,14 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-      </head>
-      <body className={inter.className}>
+      <head />
+      {/* PERBAIKAN: Menambahkan antialiased untuk render font yang lebih bersih di mobile */}
+      <body className={cn(inter.className, "antialiased")}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <div className={cn('flex', 'min-h-screen', 'flex-col')}>
-            {/* Navbar akan ditaruh di sini nanti */}
+          {/* PERBAIKAN: Memastikan layout dasar flex-col mengunci luapan lebar */}
+          <div className={cn('flex', 'min-h-screen', 'flex-col', 'w-full', 'overflow-x-hidden')}>
             <Navbar />
-            <main className="flex-1">
+            {/* PERBAIKAN: Mengunci elemen main agar tidak ikut melar */}
+            <main className="flex-1 w-full max-w-full">
               {children}
             </main>
             <Footer />

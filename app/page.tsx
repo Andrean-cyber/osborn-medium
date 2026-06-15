@@ -11,7 +11,7 @@ import { cn } from "../lib/utils";
 
 export default function Home() {
   return (
-    <div className={cn('flex', 'flex-col', 'bg-gradient-to-br', 'from-slate-50', 'to-stone-100')}>
+    <div className={cn('flex', 'flex-col', 'w-full','max-w-full','overflow-x-hidden', 'bg-gradient-to-br', 'from-slate-50', 'to-stone-100')}>
       <Hero />
       <UnitDetail />
       <PassiveIncome />
