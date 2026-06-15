@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Home", href: "#" },
-  { name: "Our Collections", href: "#explore" },
-  { name: "Amenities", href: "#amenities" },
-  { name: "About The Osborn", href: "#about" },
+  { name: "Pilihan Unit", href: "#explore" },
+  { name: "Lokasi Strategis", href: "#location" },
+  { name: "Daftar Harga", href: "#pricing" },
+  { name: "Tanya Jawab (FAQ)", href: "#faq" },
 ];
 
 export default function Navbar() {
@@ -19,12 +18,10 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  // Memicu animasi masuk tepat setelah navbar di-mount/reload
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Lock body scroll saat mobile menu terbuka
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
     return () => {
@@ -32,7 +29,6 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Auto close menu saat resize ke tablet/desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -43,62 +39,70 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // WhatsApp Tautan Integrasi
+  const whatsappUrl = "https://wa.me/62816500160?text=Halo%20The%20Osborn%20Living,%20saya%20tertarik%20dengan%20Villa%20dan%20ingin%20konsultasi%20mengenai%20unit%20ini.";
+
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#543420]/10 bg-white shadow-sm font-sans">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#543420]/10 bg-white/90 backdrop-blur-md shadow-sm font-sans">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:h-[72px] sm:px-6 lg:h-20 lg:px-8">
           
-          {/* Logo (Animated: Fade-in & Slide from Left) */}
-          <Link 
-            href="/" 
+          {/* Logo */}
+          <a 
+            href="#" 
+            onClick={closeMobileMenu}
             className={cn(
               "relative z-[60] block shrink-0 transition-all duration-1000 ease-out",
               isMounted ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
             )}
           >
-            <div className="relative h-9 w-[130px] sm:h-10 sm:w-[145px] md:h-11 md:w-[160px] lg:w-[180px]">
+            <div className="relative h-8 w-[120px] sm:h-9 sm:w-[135px] md:h-10 md:w-[150px] lg:w-[165px]">
               <Image
                 src="/Logo.png"
                 alt="The Osborn Living"
                 fill
                 priority
                 className="object-contain object-left"
-                sizes="(max-width: 640px) 130px, (max-width: 768px) 145px, (max-width: 1024px) 160px, 180px"
+                sizes="(max-width: 640px) 120px, (max-width: 768px) 135px, (max-width: 1024px) 150px, 165px"
               />
             </div>
-          </Link>
+          </a>
 
-          {/* Desktop / Tablet Navigation (Animated: Fade-in & Slide from Top) */}
+          {/* Desktop / Tablet Navigation */}
+          {/* AKUBAH: Mengecilkan font dari text-[11px] ke text-[9.5px] / text-xs serta merapatkan gap */}
           <nav className={cn(
-            "hidden md:flex items-center gap-5 lg:gap-8 transition-all duration-1000 delay-150 ease-out",
+            "hidden md:flex items-center gap-4 lg:gap-6 transition-all duration-1000 delay-150 ease-out",
             isMounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           )}>
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.name}
                 href={link.href}
-                className="relative py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-[#543420]/70 transition-colors duration-200 hover:text-[#543420] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#543420] after:transition-all after:duration-300 hover:after:w-full lg:text-xs font-sans"
+                className="relative py-1 text-[9.5px] lg:text-[10.5px] font-bold uppercase tracking-[0.2em] text-[#543420]/70 transition-colors duration-200 hover:text-[#E67E22] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#E67E22] after:transition-all after:duration-300 hover:after:w-full font-sans"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </nav>
 
-          {/* Desktop / Tablet CTA (Animated: Fade-in & Slide from Right) */}
+          {/* Desktop / Tablet CTA */}
           <div className={cn(
             "hidden md:flex items-center transition-all duration-1000 delay-300 ease-out",
             isMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
           )}>
-            <Link
-              href="#consultation"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#543420] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.22em] text-[#543420] transition-all duration-300 hover:bg-[#543420] hover:text-white active:scale-95 lg:px-5 font-sans"
+            {/* AKUBAH: Mengubah nama menjadi 'Hubungi Kami', mengecilkan font padding, dan mengarahkan ke nomor WhatsApp */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#543420] hover:border-[#E67E22] px-3.5 py-2 lg:px-4.5 lg:py-2.5 text-[9.5px] lg:text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#543420] transition-all duration-300 hover:bg-[#E67E22] hover:text-white active:scale-95 font-sans"
             >
-              <span>Schedule a Tour</span>
+              <span>Hubungi Kami</span>
               <ArrowUpRight
-                size={12}
+                size={11}
                 className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -130,7 +134,6 @@ export default function Navbar() {
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
         >
-          {/* Decorative pattern */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.015]" />
 
           <div
@@ -138,33 +141,36 @@ export default function Navbar() {
             className="relative flex h-full flex-col justify-between px-6 pb-8 pt-24"
           >
             {/* Mobile nav links */}
-            <nav className="flex flex-col gap-6">
+            <nav className="flex flex-col gap-5">
               <span className="block border-b border-zinc-100 pb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400 font-sans">
                 Navigation Menu
               </span>
 
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.name}
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="font-sans font-medium text-2xl text-[#543420] transition-all duration-200 hover:translate-x-1 sm:text-3xl"
+                  className="font-sans font-medium text-xl text-[#543420] transition-all duration-200 hover:text-[#E67E22] hover:translate-x-1 sm:text-2xl"
                 >
                   {link.name}
-                </Link>
+                </a>
               ))}
             </nav>
 
             {/* Mobile CTA */}
             <div className="space-y-6">
-              <Link
-                href="#consultation"
+              {/* AKUBAH: Tombol mobile CTA diselaraskan rute dan penamaannya */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={closeMobileMenu}
-                className="flex items-center justify-center gap-2 rounded-xl bg-[#543420] py-4 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-lg shadow-[#543420]/10 font-sans"
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#543420] hover:bg-[#E67E22] py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-lg shadow-[#543420]/10 transition-colors font-sans"
               >
-                <span>Schedule a Private Tour</span>
+                <span>Hubungi Kami via WhatsApp</span>
                 <ArrowUpRight size={14} />
-              </Link>
+              </a>
 
               <div className="text-center">
                 <span className="block text-[10px] font-medium uppercase tracking-widest text-zinc-400 font-sans">

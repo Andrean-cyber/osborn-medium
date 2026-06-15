@@ -5,8 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import {
   Layers, Maximize2, BedDouble, Bath, ShieldCheck,
-  Waves, Sparkles, Sliders, Hammer, Check,
-  Mountain, Wind, Sunset, TreePine, Star
+  Sparkles, Building, Flower2, Car, Mountain, Wind, Sunset, TreePine, Check
 } from "lucide-react";
 
 export default function UnitDetail() {
@@ -55,12 +54,10 @@ export default function UnitDetail() {
       subtitle: "Kenyamanan resor bintang lima di dalam rumah Anda, setiap hari.",
       image: "/interior.jpg",
       items: [
-        { icon: <Waves size={15} />, label: "Private Infinity Pool", value: "12 × 4 Meter dengan Sun Deck" },
-        { icon: <Sparkles size={15} />, label: "Smart Home System", value: "Automated Lighting, AC & Door Lock" },
-        { icon: <ShieldCheck size={15} />, label: "Keamanan Kawasan", value: "24/7 Gated Community & CCTV" },
-        { icon: <Layers size={15} />, label: "Dapur Gourmet", value: "Fully Equipped Kitchen & Island Table" },
-        { icon: <Maximize2 size={15} />, label: "Private Carport", value: "Kapasitas 2 Mobil SUV Besar" },
-        { icon: <Sliders size={15} />, label: "Wellness Space", value: "Area Yoga / Meditasi Pribadi" },
+        { icon: <Bath size={15} />, label: "Free Jacuzzi", value: "Area Relaksasi Pribadi Premium" },
+        { icon: <Building size={15} />, label: "Free Rooftop", value: "Area Terbuka dengan Pemandangan Luas" },
+        { icon: <Car size={15} />, label: "Parkir Kendaraan", value: "Kapasitas 2 Mobil & 1 Motor" },
+        { icon: <Flower2 size={15} />, label: "Space Exclusive", value: "Dengan taman lebih luas" },
       ],
     },
   };
@@ -68,32 +65,28 @@ export default function UnitDetail() {
   return (
     <section
       id="explore"
-      className="bg-white py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
     >
       <div ref={sectionRef} className="mx-auto w-full max-w-[1360px]">
 
         {/* ── SECTION HEADER ── */}
         <div
           className={cn(
-            "mb-16 text-center transition-all duration-700 ease-out",
+            "mb-10 text-center transition-all duration-700 ease-out",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <span className="inline-block text-[10px] font-extrabold tracking-[0.28em] text-[#543420]/60 uppercase mb-3">
-            Spesifikasi Unit
-          </span>
-
-          <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug">
-            Eksplorasi Keunggulan{" "}
-            <span className="font-semibold italic">Setiap Sudut Unit</span>
-          </h2>
-
-          {/* Decorative divider */}
-          <div className="flex items-center justify-center gap-3 mt-6">
-            <span className="h-px w-12 bg-[#543420]/20 block" />
-            <Star size={10} className="text-[#543420]/40 fill-[#543420]/20" />
-            <span className="h-px w-12 bg-[#543420]/20 block" />
+          {/* AKUBAH: Menggunakan warna hangat Terracotta/Amber pada badge */}
+          <div className="inline-flex items-center gap-2 bg-[#F39C12]/10 border border-[#E67E22]/20 px-3.5 py-1.5 rounded-full">
+            <Sparkles size={12} className="text-[#E67E22]" />
+            <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#D35400]">
+              SPESIFIKASI UNIT
+            </span>
           </div>
+          <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug mt-3">
+            Eksplorasi Keunggulan{" "}
+            <span className="font-semibold italic text-[#E67E22]">Setiap Sudut Unit</span>
+          </h2>
         </div>
 
         {/* ── TABS ── */}
@@ -103,6 +96,7 @@ export default function UnitDetail() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}
         >
+          {/* AKUBAH: Tab aktif kini menggunakan highlight warna #E67E22 agar lebih pop-up */}
           {[
             { id: "spec", name: "Spesifikasi Unit" },
             { id: "facility", name: "Fasilitas & Fitur" },
@@ -113,7 +107,7 @@ export default function UnitDetail() {
               className={cn(
                 "pb-4 px-1 text-xs md:text-sm tracking-widest uppercase border-b-2 transition-all duration-300 shrink-0 whitespace-nowrap font-medium",
                 activeTab === tab.id
-                  ? "border-[#543420] text-[#543420] font-bold"
+                  ? "border-[#E67E22] text-[#E67E22] font-bold"
                   : "border-transparent text-zinc-400 hover:text-[#543420]/70"
               )}
             >
@@ -150,11 +144,12 @@ export default function UnitDetail() {
                   style={{ transitionDelay: isVisible ? `${200 + idx * 80}ms` : "0ms" }}
                   className={cn(
                     "flex items-center gap-4 p-4 bg-[#faf7f4] border border-[#543420]/8 rounded-2xl",
-                    "transition-all duration-500 ease-out hover:bg-[#f3ece4] hover:border-[#543420]/15 hover:shadow-sm group",
+                    "transition-all duration-500 ease-out hover:bg-[#fcf9f5] hover:border-[#E67E22]/30 hover:shadow-sm group",
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   )}
                 >
-                  <div className="p-2.5 bg-white text-[#543420] rounded-xl shadow-sm border border-[#543420]/10 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                  {/* AKUBAH: Ikon penanda spec menggunakan warna orange lembut dan berganti pekat saat di-hover */}
+                  <div className="p-2.5 bg-[#F39C12]/10 text-[#E67E22] rounded-xl shadow-sm border border-[#E67E22]/10 shrink-0 group-hover:bg-[#E67E22] group-hover:text-white transition-all duration-300">
                     {item.icon}
                   </div>
                   <div className="space-y-0.5">
@@ -176,7 +171,7 @@ export default function UnitDetail() {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               )}
             >
-              <p className="text-[10px] font-extrabold tracking-[0.2em] text-[#543420]/50 uppercase mb-3">
+              <p className="text-[10px] font-extrabold tracking-[0.2em] text-[#D35400] uppercase mb-3">
                 Keistimewaan Lokasi
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -187,11 +182,12 @@ export default function UnitDetail() {
                     className={cn(
                       "flex items-start gap-3 p-3.5 rounded-xl border border-[#543420]/8",
                       "bg-gradient-to-br from-[#fdf9f6] to-[#f5ede4]",
-                      "hover:border-[#543420]/20 hover:shadow-sm transition-all duration-300 group",
+                      "hover:border-[#E67E22]/30 hover:shadow-sm transition-all duration-300 group",
                       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                     )}
                   >
-                    <div className="mt-0.5 p-1.5 bg-[#543420]/10 text-[#543420] rounded-lg shrink-0 group-hover:bg-[#543420]/15 transition-colors duration-300">
+                    {/* AKUBAH: Aksen warna orange tua pada boks poin ikon lokasi */}
+                    <div className="mt-0.5 p-1.5 bg-[#E67E22]/10 text-[#D35400] rounded-lg shrink-0 group-hover:bg-[#E67E22] group-hover:text-white transition-colors duration-300">
                       {pt.icon}
                     </div>
                     <div>
@@ -210,12 +206,13 @@ export default function UnitDetail() {
             {/* Legal guarantee badge */}
             <div
               className={cn(
-                "flex items-center gap-3 p-4 bg-[#543420] text-white rounded-2xl shadow-lg max-w-md",
+                "flex items-center gap-3 p-4 bg-[#543420] border-l-4 border-[#E67E22] text-white rounded-2xl shadow-lg max-w-md",
                 "transition-all duration-700 delay-700 ease-out",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               )}
             >
-              <div className="w-6 h-6 rounded-full bg-[#E2D8CC] text-[#543420] flex items-center justify-center shrink-0">
+              {/* AKUBAH: Lingkaran centang diubah jadi warna aksen orange hangat */}
+              <div className="w-6 h-6 rounded-full bg-[#E67E22] text-white flex items-center justify-center shrink-0">
                 <Check size={12} strokeWidth={3} />
               </div>
               <p className="text-[11px] font-medium tracking-wide text-[#E2D8CC] leading-relaxed">
@@ -239,13 +236,13 @@ export default function UnitDetail() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 priority
               />
-              {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#543420]/50 via-[#543420]/10 to-transparent" />
 
               {/* Floating label */}
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg">
-                  <p className="text-[10px] font-extrabold tracking-widest text-[#543420]/50 uppercase">
+                  {/* AKUBAH: Label kecil di atas gambar disematkan warna terakota */}
+                  <p className="text-[10px] font-extrabold tracking-widest text-[#E67E22] uppercase">
                     {activeTab === "spec" ? "Tipe Unit" : "Fasilitas"}
                   </p>
                   <p className="text-sm font-bold text-[#543420] mt-0.5">
@@ -259,18 +256,19 @@ export default function UnitDetail() {
             <div className="grid grid-cols-2 gap-3 mt-4">
               {[
                 { value: "96 m²", label: "Luas Tanah" },
-                { value: "3 BR", label: "Master Bedrooms" },
+                { value: "80 m²", label: "Luas Bangunan" },
               ].map((stat, i) => (
                 <div
                   key={i}
                   className={cn(
                     "bg-[#faf7f4] border border-[#543420]/8 rounded-2xl p-4 text-center",
-                    "transition-all duration-700 ease-out",
+                    "transition-all duration-700 ease-out hover:border-[#E67E22]/30 transition-colors",
                     isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
                   )}
                   style={{ transitionDelay: isVisible ? `${500 + i * 100}ms` : "0ms" }}
                 >
-                  <p className="text-xl font-bold text-[#543420]">{stat.value}</p>
+                  {/* AKUBAH: Angka dimensi tanah & bangunan di-highlight menggunakan warna terracotta */}
+                  <p className="text-xl font-bold text-[#D35400]">{stat.value}</p>
                   <p className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider mt-0.5">{stat.label}</p>
                 </div>
               ))}

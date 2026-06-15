@@ -40,46 +40,46 @@ export default function Pricing() {
     <section 
       id="pricing" 
       ref={sectionRef}
-      className="bg-[#FFFFFF] py-24 px-4 md:px-8 lg:px-16 w-full relative overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
     >
       {/* Background Subtle Gradient Blurs */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#E2D8CC]/20 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* AKUBAH: Mengubah pancaran glow radial background menjadi rona amber hangat lembut */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
       
       <div className="mx-auto w-full max-w-[1240px]">
         
         {/* ========================================================= */}
-        {/* CENTERED SECTION HEADER (Symmetric with previous sections)*/}
+        {/* CENTERED SECTION HEADER                                   */}
         {/* ========================================================= */}
         <div className={cn(
-          "mb-16 text-center transition-all duration-1000 ease-out",
+          "mb-10 text-center transition-all duration-1000 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          <div className="inline-flex items-center gap-2 bg-[#E2D8CC]/40 border border-[#543420]/10 px-3.5 py-1.5 rounded-full">
-            <Sparkles size={12} className="text-[#543420]" />
-            <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#543420]">
+          {/* AKUBAH: Penyesuaian warna boks badge info harga */}
+          <div className="inline-flex items-center gap-2 bg-[#F39C12]/10 border border-[#E67E22]/20 px-3.5 py-1.5 rounded-full">
+            <Sparkles size={12} className="text-[#E67E22]" />
+            <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#D35400]">
               Transparent Investment
             </span>
           </div>
+          {/* AKUBAH: Sentuhan rona terracotta miring pada sub-judul penawaran */}
           <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug mt-3">
-            Penawaran Eksklusif <br />
-            <span className="font-semibold italic">Satu Harga, All-Inclusive</span>
+            Penawaran Eksklusif {" "}
+            <span className="font-semibold italic text-[#E67E22]">Satu Harga, All-Inclusive</span>
           </h2>
-          <div className="flex items-center justify-center gap-3 mt-5">
-            <span className="h-px w-12 bg-[#543420]/20 block" />
-            <Star size={10} className="text-[#543420]/40 fill-[#543420]/20" />
-            <span className="h-px w-12 bg-[#543420]/20 block" />
-          </div>
+          
           <p className="text-zinc-400 font-light text-sm max-w-xl mx-auto mt-5 leading-relaxed">
             Tanpa biaya siluman tersembunyi. Seluruh fasilitas mewah, legalitas aman, dan panorama alam terbaik sudah terangkum dalam satu nilai investasi pasti.
           </p>
         </div>
 
         {/* ========================================================= */}
-        {/* MAIN SINGLE PRICE CARD GRID (ANIMATED)                    */}
+        {/* MAIN SINGLE PRICE CARD GRID                               */}
         {/* ========================================================= */}
+        {/* AKUBAH: Garis pembatas luar grid card utama diselaraskan menggunakan rona terracotta tipis */}
         <div className={cn(
-          "grid grid-cols-1 lg:grid-cols-12 gap-0 border border-[#543420]/10 rounded-[2.5rem] overflow-hidden bg-white transition-all duration-1000 delay-200 ease-out",
-          isVisible ? "opacity-100 scale-100 shadow-[0_30px_70px_rgba(84,52,32,0.08)]" : "opacity-0 scale-[0.98] shadow-none"
+          "grid grid-cols-1 lg:grid-cols-12 gap-0 border border-[#E67E22]/20 rounded-[2.5rem] overflow-hidden bg-white transition-all duration-1000 delay-200 ease-out",
+          isVisible ? "opacity-100 scale-100 shadow-[0_30px_70px_rgba(230,126,34,0.06)]" : "opacity-0 scale-[0.98] shadow-none"
         )}>
           
           {/* LEFT PANEL: THE VALUE & CORE SPECS (7 Columns) */}
@@ -95,8 +95,9 @@ export default function Pricing() {
               </div>
 
               {/* Special Mountain View Accent Banner */}
-              <div className="bg-[#E2D8CC]/20 border border-[#543420]/5 p-4.5 rounded-2xl flex items-start gap-3.5">
-                <div className="p-2.5 bg-white text-[#543420] rounded-xl shadow-sm shrink-0">
+              {/* AKUBAH: Mengubah boks informasi panorama alam menggunakan background amber dan border kiri terracotta */}
+              <div className="bg-[#F39C12]/5 border border-[#E67E22]/10 border-l-4 border-l-[#E67E22] p-4.5 rounded-2xl flex items-start gap-3.5">
+                <div className="p-2.5 bg-white text-[#E67E22] rounded-xl shadow-sm shrink-0">
                   <Mountain size={18} />
                 </div>
                 <div className="space-y-1">
@@ -115,7 +116,8 @@ export default function Pricing() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {villaFeatures.map((feat, idx) => (
                     <div key={idx} className="flex items-center gap-3 text-zinc-700 text-xs font-medium">
-                      <div className="w-6 h-6 rounded-lg bg-[#E2D8CC]/40 text-[#543420] flex items-center justify-center shrink-0">
+                      {/* AKUBAH: Boks kecil pembungkus ikon denah diganti ke rona terakota transparan tipis */}
+                      <div className="w-6 h-6 rounded-lg bg-[#E67E22]/10 text-[#E67E22] flex items-center justify-center shrink-0">
                         {feat.icon}
                       </div>
                       <span className="text-zinc-600 font-light tracking-wide">{feat.text}</span>
@@ -127,7 +129,8 @@ export default function Pricing() {
 
             {/* Legal Guarantee Subtext */}
             <div className="pt-6 border-t border-zinc-100 flex items-center gap-2.5 text-zinc-400 text-[11px] font-light">
-              <ShieldCheck size={14} className="text-[#543420] shrink-0" />
+              {/* AKUBAH: Ikon tameng penjamin legalitas diganti ke warna terracotta */}
+              <ShieldCheck size={14} className="text-[#E67E22] shrink-0" />
               <span>Ikatan serah terima unit tepat waktu dijamin dengan jaminan penalti tertulis secara hukum.</span>
             </div>
 
@@ -135,7 +138,6 @@ export default function Pricing() {
 
           {/* RIGHT PANEL: PRICE TAG & BONUS PACK (5 Columns) */}
           <div className="lg:col-span-5 bg-[#543420] text-white p-6 md:p-10 lg:p-12 flex flex-col justify-between relative">
-            {/* Background Texture Ornament inside dark panel */}
             <div className="absolute inset-0 bg-[radial-gradient(#E2D8CC_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.03] pointer-events-none" />
 
             {/* Price Presentation */}
@@ -156,7 +158,8 @@ export default function Pricing() {
 
               {/* Exclusive Bonuses List Container */}
               <div className="space-y-4 pt-5 border-t border-white/10">
-                <div className="flex items-center gap-2 text-[#E2D8CC]">
+                {/* AKUBAH: Menyelaraskan teks label hadiah bonus menggunakan warna warm amber jernih */}
+                <div className="flex items-center gap-2 text-[#F39C12]">
                   <Gift size={14} />
                   <span className="text-[10px] font-bold tracking-widest uppercase">Bonus Pembelian Bulan Ini</span>
                 </div>
@@ -164,7 +167,8 @@ export default function Pricing() {
                 <div className="space-y-3">
                   {exclusiveBonuses.map((bonus, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs">
-                      <CheckCircle2 size={14} className="text-[#E2D8CC] shrink-0 mt-0.5" />
+                      {/* AKUBAH: Ikon centang penunjuk bonus diubah menjadi warna terracotta orange menyala */}
+                      <CheckCircle2 size={14} className="text-[#E67E22] shrink-0 mt-0.5" />
                       <span className="text-zinc-200 font-light leading-snug">{bonus}</span>
                     </div>
                   ))}
@@ -174,11 +178,12 @@ export default function Pricing() {
 
             {/* Main Action CTA Button */}
             <div className="pt-8 relative z-10">
+              {/* AKUBAH: Mengubah interaksi warna dasar tombol ajukan LOI agar berubah jadi terracotta pekat saat di-hover */}
               <a
                 href="https://wa.me/6281234567890" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 bg-[#E2D8CC] hover:bg-white text-[#543420] font-bold text-xs py-4 rounded-xl transition-all shadow-xl hover:scale-[1.02] active:scale-95 w-full text-center"
+                className="group flex items-center justify-center gap-3 bg-[#E2D8CC] hover:bg-[#E67E22] text-[#543420] hover:text-white font-bold text-xs py-4 rounded-xl transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95 w-full text-center"
               >
                 <span>Ajukan LOI & Booking Unit</span>
                 <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />

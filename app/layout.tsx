@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "The Osborn Living - Temukan Tempat Investasi Terbaik Bersama Kami",
   description: "Kenyamanan dimulai dari tempat tinggalmu. Exclusive home cluster with infinity pool di dekat BNS, mulai Rp 700 juta",
   icons: {
-    icon: "/favicon.png", // Sesuaikan dengan nama file di folder public
+    icon: "/icon.ico", // Sesuaikan dengan nama file di folder public
   },
   generator: 'v0.dev'
 }

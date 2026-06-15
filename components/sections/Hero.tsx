@@ -9,12 +9,10 @@ export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Small timeout so the browser has painted before we trigger the transition
     const t = setTimeout(() => setIsLoaded(true), 80);
     return () => clearTimeout(t);
   }, []);
 
-  // Shared base for every animated element
   const anim = "transition-all ease-out";
 
   return (
@@ -25,8 +23,10 @@ export default function Hero() {
       )}
     >
       {/* Background texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.02]" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#E2D8CC]/20 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.015]" />
+      
+      {/* AKUBAH: Mengubah pancaran glow radial background menjadi rona amber hangat */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
 
@@ -34,15 +34,16 @@ export default function Hero() {
         <div className="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left">
 
           {/* 1 — Badge */}
+          {/* AKUBAH: Penyesuaian warna border & text badge ke rona amber-terracotta */}
           <div
             className={cn(
               anim, "duration-700 delay-[0ms]",
-              "inline-flex items-center gap-2 bg-[#E2D8CC]/40 border border-[#543420]/10 px-4 py-1.5 rounded-full",
+              "inline-flex items-center gap-2 bg-[#F39C12]/10 border border-[#E67E22]/20 px-4 py-1.5 rounded-full",
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
             )}
           >
-            <Sparkles size={14} className="text-[#543420]" />
-            <span className="text-[11px] font-bold tracking-widest uppercase text-[#543420]">
+            <Sparkles size={14} className="text-[#E67E22]" />
+            <span className="text-[11px] font-bold tracking-widest uppercase text-[#D35400]">
               Best Investment
             </span>
           </div>
@@ -57,7 +58,8 @@ export default function Hero() {
               )}
             >
               Designed for Life <br />
-              <span className="font-bold italic text-[#543420]">Built for Profit.</span>
+              {/* AKUBAH: Mengubah teks 'Built for Profit' menjadi terracotta orange */}
+              <span className="font-bold italic text-[#E67E22]">Built for Profit.</span>
             </h1>
 
             {/* 3 — Body copy */}
@@ -87,7 +89,8 @@ export default function Hero() {
               { value: "80 m²", label: "Luas Bangunan" },
               { value: "Strategic", label: "Location" },
             ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center lg:items-start border-l border-[#543420]/20 pl-4">
+              /* AKUBAH: Warna border pembatas stat diubah sedikit lebih hangat */
+              <div key={i} className="flex flex-col items-center lg:items-start border-l border-[#E67E22]/20 pl-4">
                 <span className="text-xl md:text-2xl font-bold text-[#543420]">{s.value}</span>
                 <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider mt-0.5">{s.label}</span>
               </div>
@@ -102,9 +105,10 @@ export default function Hero() {
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
+            {/* AKUBAH: Menambahkan gradasi hover dari cokelat tua ke terracotta pada tombol utama */}
             <a
               href="#explore"
-              className="group flex items-center justify-center gap-3 bg-[#543420] text-white font-bold text-xs px-8 py-4 rounded-xl shadow-xl shadow-[#543420]/10 hover:bg-[#432918] transition-all w-full sm:w-auto active:scale-95"
+              className="group flex items-center justify-center gap-3 bg-[#543420] hover:bg-[#E67E22] text-white font-bold text-xs px-8 py-4 rounded-xl shadow-xl shadow-[#543420]/10 transition-all duration-300 w-full sm:w-auto active:scale-95"
             >
               <span>Explore Collection</span>
               <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -114,7 +118,7 @@ export default function Hero() {
               href="https://wa.me/62816500160?text=Halo%20The%20Osborn%20Living,%20saya%20tertarik%20untuk%20mendapatkan%20informasi%20lebih%20lanjut%20mengenai%20unit%20dan%20potensi%20investasinya.%20Mohon%20bantuannya."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[#E2D8CC]/30 border border-[#543420]/10 hover:bg-[#E2D8CC]/50 text-[#543420] font-bold text-xs px-8 py-4 rounded-xl transition-all w-full sm:w-auto active:scale-95"
+              className="flex items-center justify-center gap-2 bg-[#E2D8CC]/30 border border-[#543420]/10 hover:bg-[#F39C12]/10 hover:text-[#D35400] hover:border-[#E67E22]/20 text-[#543420] font-bold text-xs px-8 py-4 rounded-xl transition-all duration-300 w-full sm:w-auto active:scale-95"
             >
               <Compass size={14} />
               <span>Private Consultation</span>
@@ -125,16 +129,17 @@ export default function Hero() {
         {/* ── RIGHT: VISUAL SHOWCASE ── */}
         <div className="lg:col-span-6 relative h-[450px] md:h-[580px] w-full mt-6 lg:mt-0">
 
-          {/* Decorative cream block — enters first so it feels like a stage */}
+          {/* Decorative block */}
+          {/* AKUBAH: Mengubah warna blok solid di belakang dari krem menjadi Amber Muted (#F39C12/20) agar kontrasnya manis */}
           <div
             className={cn(
               anim, "duration-700 delay-[200ms]",
-              "absolute right-[40%] top-[10%] w-[35%] h-[40%] bg-[#E2D8CC] rounded-[1.5rem] -z-10",
+              "absolute right-[40%] top-[10%] w-[35%] h-[40%] bg-[#F39C12]/20 rounded-[1.5rem] -z-10",
               isLoaded ? "opacity-100 rotate-6 scale-100" : "opacity-0 rotate-0 scale-90"
             )}
           />
 
-          {/* Main image — slides in from right */}
+          {/* Main image */}
           <div
             className={cn(
               anim, "duration-[900ms] delay-[350ms]",
@@ -153,12 +158,12 @@ export default function Hero() {
               )}
             />
             <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md border border-zinc-100 px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-sm">
-              <MapPin size={12} className="text-[#543420]" />
+              <MapPin size={12} className="text-[#E67E22]" />
               <span className="text-[10px] font-bold text-zinc-800 tracking-wide">Temas, Batu</span>
             </div>
           </div>
 
-          {/* Secondary image — rises from below */}
+          {/* Secondary image */}
           <div
             className={cn(
               anim, "duration-[900ms] delay-[550ms]",
@@ -178,15 +183,16 @@ export default function Hero() {
             />
           </div>
 
-          {/* Floating trust badge — last to appear */}
+          {/* Floating trust badge */}
+          {/* AKUBAH: Memberikan aksen border kiri berwarna orange terakota terang pada card melayang hitam */}
           <div
             className={cn(
               anim, "duration-700 delay-[750ms]",
-              "absolute left-4 bottom-4 md:left-28 md:bottom-12 bg-[#543420] text-white p-4 rounded-2xl shadow-xl flex items-center gap-3 z-30",
+              "absolute left-4 bottom-4 md:left-28 md:bottom-12 bg-[#543420] border-l-4 border-[#E67E22] text-white p-4 rounded-2xl shadow-xl flex items-center gap-3 z-30",
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
-            <div className="p-2 bg-white/10 rounded-xl text-[#E2D8CC]">
+            <div className="p-2 bg-white/10 rounded-xl text-[#E67E22]">
               <Key size={16} />
             </div>
             <div className="pr-2">

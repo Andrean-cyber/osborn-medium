@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { ArrowUpRight, Car, Sparkles, Navigation } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MapPin, Car, Clock, Sparkles, Navigation, ArrowUpRight, Star } from "lucide-react";
 
 export default function Location() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -30,28 +30,28 @@ export default function Location() {
       time: "3 Menit",
       distance: "1.2 km",
       category: "City Center Hub",
-      image: "/unit.jpg",
+      image: "/alunbatu.png",
     },
     {
       name: "Batu Love Garden (BALOGA)",
       time: "2 Menit",
       distance: "850 m",
       category: "Nature & Flora Park",
-      image: "/unit.jpg",
+      image: "/baloga.jpg",
     },
     {
       name: "Jatim Park 2 (Batu Secret Zoo)",
       time: "5 Menit",
       distance: "2.4 km",
       category: "Family Theme Park",
-      image: "/unit.jpg",
+      image: "/jatimpark.jpg",
     },
     {
       name: "Museum Angkut",
       time: "6 Menit",
       distance: "2.9 km",
       category: "Edu-Tourism & Culture",
-      image: "/unit.jpg",
+      image: "/museum.png",
     },
   ];
 
@@ -59,32 +59,32 @@ export default function Location() {
     <section 
       id="location" 
       ref={sectionRef}
-      className="bg-[#FFFFFF] py-24 px-4 md:px-8 lg:px-16 w-full relative overflow-hidden"
+      className="bg-[#FAFAF8] py-14 md:py-24 px-4 md:px-8 lg:px-16 w-full overflow-hidden"
     >
       {/* Accent Light Background Gradient */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#E2D8CC]/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* AKUBAH: Mengubah pancaran glow radial bawah menjadi rona amber tipis */}
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="mx-auto w-full max-w-[1360px]">
         
         {/* ========================================================= */}
-        {/* CENTERED SECTION HEADER (Symmetric with PassiveIncome)     */}
+        {/* CENTERED SECTION HEADER                                   */}
         {/* ========================================================= */}
         <div className={cn(
-          "mb-16 text-center transition-all duration-1000 ease-out",
+          "mb-10 text-center transition-all duration-1000 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          <span className="inline-block text-[10px] font-extrabold tracking-[0.28em] text-[#543420]/60 uppercase mb-3">
-            Strategic Micro-Location
-          </span>
-          <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug">
-            Konektivitas di{" "}
-            <span className="font-semibold italic">Lokasi Paling Prestige</span>
-          </h2>
-          <div className="flex items-center justify-center gap-3 mt-5">
-            <span className="h-px w-12 bg-[#543420]/20 block" />
-            <Star size={10} className="text-[#543420]/40 fill-[#543420]/20" />
-            <span className="h-px w-12 bg-[#543420]/20 block" />
+          <div className="inline-flex items-center gap-2 bg-[#F39C12]/10 border border-[#E67E22]/20 px-3.5 py-1.5 rounded-full">
+            <Sparkles size={12} className="text-[#E67E22]" />
+            <span className="text-[10px] font-extrabold tracking-widest uppercase text-[#D35400]">
+              Strategic Micro-Location
+            </span>
           </div>
+          <h2 className="text-3xl md:text-5xl font-light text-[#543420] tracking-tight leading-snug mt-3">
+            Konektivitas di{" "}
+            <span className="font-semibold italic text-[#E67E22]">Lokasi Paling Prestige</span>
+          </h2>
+          
           <p className="text-zinc-400 font-light text-sm max-w-xl mx-auto mt-5 leading-relaxed">
             Dikelilingi oleh keasrian alam yang sejuk khas pegunungan, namun tetap memiliki akses instan menuju pusat destinasi hiburan keluarga berkelas dunia, eduwisata modern, serta area kuliner populer Kota Wisata Batu.
           </p>
@@ -113,15 +113,17 @@ export default function Location() {
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={cn(
                       "flex items-center justify-between p-4.5 rounded-xl border transition-all duration-300 cursor-pointer group",
+                      /* AKUBAH: Mengubah background hover list dari cokelat tua ke terracotta hangat */
                       hoveredIndex === idx 
-                        ? "bg-[#543420] border-[#543420] text-white shadow-xl shadow-[#543420]/10 scale-[1.01]" 
+                        ? "bg-[#E67E22] border-[#E67E22] text-white shadow-xl shadow-[#E67E22]/20 scale-[1.01]" 
                         : "bg-[#FAFAFA] border-zinc-100 text-[#543420] hover:bg-zinc-50"
                     )}
                   >
                     <div className="space-y-0.5 min-w-0 pr-2">
                       <span className={cn(
                         "text-[9px] font-bold uppercase tracking-wider block transition-colors duration-300",
-                        hoveredIndex === idx ? "text-[#E2D8CC]" : "text-zinc-400"
+                        /* AKUBAH: Rona label kategori saat list dalam kondisi ter-hover */
+                        hoveredIndex === idx ? "text-[#F39C12]" : "text-zinc-400"
                       )}>
                         {spot.category}
                       </span>
@@ -134,7 +136,8 @@ export default function Location() {
                       "flex items-center gap-1.5 shrink-0 pl-4 font-mono text-xs font-bold px-3 py-1.5 rounded-lg transition-colors duration-300",
                       hoveredIndex === idx ? "bg-white/10 text-white" : "bg-[#543420]/5 text-[#543420]"
                     )}>
-                      <Car size={13} className={hoveredIndex === idx ? "text-[#E2D8CC]" : "text-[#543420]/60"} />
+                      {/* AKUBAH: Rona ikon mobil kecil di dalam list */}
+                      <Car size={13} className={hoveredIndex === idx ? "text-white" : "text-[#543420]/60"} />
                       <span>{spot.time}</span>
                     </div>
                   </div>
@@ -143,9 +146,10 @@ export default function Location() {
             </div>
 
             {/* Micro Call-to-action Card */}
-            <div className="p-5 bg-[#E2D8CC]/20 border border-[#543420]/5 rounded-2xl flex items-center justify-between gap-4">
+            {/* AKUBAH: Mengubah boks ajakan survey menggunakan background amber transparan tipis & border kiri kokoh */}
+            <div className="p-5 bg-[#F39C12]/5 border border-[#E67E22]/10 border-l-4 border-l-[#E67E22] rounded-2xl flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#543420] text-white flex items-center justify-center shrink-0 shadow-inner">
+                <div className="w-10 h-10 rounded-xl bg-[#E67E22] text-white flex items-center justify-center shrink-0 shadow-inner">
                   <Navigation size={16} className="animate-pulse" />
                 </div>
                 <div>
@@ -157,7 +161,8 @@ export default function Location() {
                 href="https://www.google.com/maps/place/The+Osborn+Living/@-7.8713679,112.5361277,672m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e78810071e5329f:0xd6aeb00719d4879c!8m2!3d-7.8713732!4d112.5387026!16s%2Fg%2F11y48cgz0q?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-white border border-[#543420]/10 text-[#543420] rounded-xl flex items-center justify-center shadow-sm hover:bg-[#543420] hover:text-white hover:scale-105 transition-all duration-300"
+                /* AKUBAH: Efek interaktif tombol panah berganti ke rona terracotta jernih saat di-hover */
+                className="w-9 h-9 bg-white border border-[#543420]/10 text-[#543420] rounded-xl flex items-center justify-center shadow-sm hover:bg-[#E67E22] hover:border-[#E67E22] hover:text-white hover:scale-105 transition-all duration-300"
               >
                 <ArrowUpRight size={16} />
               </a>
@@ -176,7 +181,8 @@ export default function Location() {
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={cn(
                   "relative h-[240px] sm:h-full min-h-[240px] rounded-2xl overflow-hidden shadow-sm group border border-zinc-100 transition-all duration-500",
-                  hoveredIndex === idx ? "shadow-2xl shadow-[#543420]/15" : ""
+                  /* AKUBAH: Efek bayangan boks gambar mengadopsi rona bayangan terracotta */
+                  hoveredIndex === idx ? "shadow-2xl shadow-[#E67E22]/15" : ""
                 )}
               >
                 {/* Image Overlay */}
@@ -193,8 +199,9 @@ export default function Location() {
                 />
                 
                 {/* Gradient Shading */}
+                {/* AKUBAH: Gradasi bayangan bawah gambar dikombinasikan dengan gradien gelap ke terracotta tipis */}
                 <div className={cn(
-                  "absolute inset-0 bg-gradient-to-t from-[#543420]/95 via-[#543420]/35 to-transparent transition-opacity duration-300",
+                  "absolute inset-0 bg-gradient-to-t from-[#432918] via-[#543420]/40 to-transparent transition-opacity duration-300",
                   hoveredIndex === idx ? "opacity-95" : "opacity-80"
                 )} />
 
@@ -202,26 +209,32 @@ export default function Location() {
                 <div className="absolute inset-x-0 bottom-0 p-5 text-white flex flex-col justify-end h-full z-10">
                   <div className="flex items-end justify-between gap-3">
                     <div className="space-y-1.5 min-w-0">
-                      <span className="text-[9px] font-bold tracking-widest text-[#E2D8CC] uppercase bg-white/10 backdrop-blur-md px-2.5 py-0.5 rounded border border-white/10 inline-block">
+                      {/* AKUBAH: Mengubah warna teks tag kategori di atas gambar menjadi warna kuning amber manis */}
+                      <span className="text-[9px] font-bold tracking-widest text-[#F39C12] uppercase bg-black/30 backdrop-blur-md px-2.5 py-0.5 rounded border border-white/10 inline-block">
                         {spot.category}
                       </span>
-                      <h3 className="text-xs md:text-sm font-bold tracking-wide leading-snug text-white group-hover:text-[#E2D8CC] transition-colors duration-300">
+                      <h3 className={cn(
+                        "text-xs md:text-sm font-bold tracking-wide leading-snug text-white transition-colors duration-300",
+                        hoveredIndex === idx ? "text-[#F39C12]" : "text-white"
+                      )}>
                         {spot.name}
                       </h3>
                     </div>
 
                     {/* Time Badge in Image corner */}
                     <div className="bg-white text-[#543420] px-3 py-2 rounded-xl flex flex-col items-center justify-center shadow-lg border border-zinc-100 shrink-0 text-center min-w-[70px]">
-                      <span className="text-xs font-extrabold leading-none tracking-tight">{spot.time}</span>
+                      {/* AKUBAH: Highlight teks penunjuk waktu menit memakai warna terakota jernih */}
+                      <span className="text-xs font-extrabold leading-none tracking-tight text-[#D35400]">{spot.time}</span>
                       <span className="text-[8px] text-zinc-400 font-bold tracking-wide uppercase mt-1">{spot.distance}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Active Highlight Border Line */}
+                {/* AKUBAH: Garis tepi bingkai aktif melayang diubah dari krem pasif ke terracotta orange jernih */}
                 <div className={cn(
                   "absolute inset-0 border-2 rounded-2xl transition-all duration-300 pointer-events-none z-20",
-                  hoveredIndex === idx ? "border-[#E2D8CC]" : "border-transparent"
+                  hoveredIndex === idx ? "border-[#E67E22]" : "border-transparent"
                 )} />
               </div>
             ))}
