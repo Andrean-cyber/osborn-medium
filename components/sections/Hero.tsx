@@ -25,16 +25,16 @@ export default function Hero() {
       {/* Background texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#543420_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.015]" />
       
-      {/* AKUBAH: Mengubah pancaran glow radial background menjadi rona amber hangat */}
+      {/* Glow radial background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F39C12]/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+      {/* PERBAIKAN: Menambahkan overflow-hidden pada pembungkus grid agar anak elemen tidak meluber ke kanan */}
+      <div className="mx-auto w-full max-w-[1360px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 overflow-hidden lg:overflow-visible">
 
         {/* ── LEFT: TYPOGRAPHY & CTA ── */}
         <div className="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left">
 
           {/* 1 — Badge */}
-          {/* AKUBAH: Penyesuaian warna border & text badge ke rona amber-terracotta */}
           <div
             className={cn(
               anim, "duration-700 delay-[0ms]",
@@ -58,7 +58,6 @@ export default function Hero() {
               )}
             >
               Designed for Life <br />
-              {/* AKUBAH: Mengubah teks 'Built for Profit' menjadi terracotta orange */}
               <span className="font-bold italic text-[#E67E22]">Built for Profit.</span>
             </h1>
 
@@ -89,7 +88,6 @@ export default function Hero() {
               { value: "80 m²", label: "Luas Bangunan" },
               { value: "Strategic", label: "Location" },
             ].map((s, i) => (
-              /* AKUBAH: Warna border pembatas stat diubah sedikit lebih hangat */
               <div key={i} className="flex flex-col items-center lg:items-start border-l border-[#E67E22]/20 pl-4">
                 <span className="text-xl md:text-2xl font-bold text-[#543420]">{s.value}</span>
                 <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider mt-0.5">{s.label}</span>
@@ -105,7 +103,6 @@ export default function Hero() {
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
-            {/* AKUBAH: Menambahkan gradasi hover dari cokelat tua ke terracotta pada tombol utama */}
             <a
               href="#explore"
               className="group flex items-center justify-center gap-3 bg-[#543420] hover:bg-[#E67E22] text-white font-bold text-xs px-8 py-4 rounded-xl shadow-xl shadow-[#543420]/10 transition-all duration-300 w-full sm:w-auto active:scale-95"
@@ -130,7 +127,6 @@ export default function Hero() {
         <div className="lg:col-span-6 relative h-[450px] md:h-[580px] w-full mt-6 lg:mt-0">
 
           {/* Decorative block */}
-          {/* AKUBAH: Mengubah warna blok solid di belakang dari krem menjadi Amber Muted (#F39C12/20) agar kontrasnya manis */}
           <div
             className={cn(
               anim, "duration-700 delay-[200ms]",
@@ -144,7 +140,8 @@ export default function Hero() {
             className={cn(
               anim, "duration-[900ms] delay-[350ms]",
               "absolute left-0 top-0 w-[75%] h-[85%] rounded-[2rem] overflow-hidden border-4 border-white shadow-[0_30px_60px_rgba(84,52,32,0.15)] z-10",
-              isLoaded ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-12 scale-95"
+              /* PERBAIKAN: Mengubah translate-x-12 menjadi translate-y-8 agar tidak menabrak batas kanan layar mobile */
+              isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
             )}
           >
             <Image
@@ -184,7 +181,6 @@ export default function Hero() {
           </div>
 
           {/* Floating trust badge */}
-          {/* AKUBAH: Memberikan aksen border kiri berwarna orange terakota terang pada card melayang hitam */}
           <div
             className={cn(
               anim, "duration-700 delay-[750ms]",
